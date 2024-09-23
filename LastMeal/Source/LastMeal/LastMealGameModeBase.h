@@ -13,5 +13,7 @@ UCLASS()
 class LASTMEAL_API ALastMealGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	ALastMealGameModeBase();
 };
