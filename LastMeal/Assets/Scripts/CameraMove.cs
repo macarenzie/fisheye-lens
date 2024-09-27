@@ -22,7 +22,7 @@ public class CameraMove : MonoBehaviour
         // Current point
     [SerializeField] private testtype testView = testtype.simple;
 
-    private IEnumerator coroutine;
+    private IEnumerator co;
 
     [SerializeField] private Vector2 kitchenPos;
     [SerializeField] private Vector2 counterPos;
@@ -57,14 +57,17 @@ public class CameraMove : MonoBehaviour
                 // Choice B: smooth transition
                 case testtype.lerp:
                 {
+                    StopCoroutine(co);
+
                     if (isAtCounter) {
-                        StopCoroutine("lerp_value");
-                        StartCoroutine(lerp_value(transform.position, kitchenPos));
+
+                        co = lerp_value(transform.position, kitchenPos);
+                        StartCoroutine(co);
                     }
 
                     else {
-                        StopCoroutine("lerp_value");
-                        StartCoroutine(lerp_value(transform.position, counterPos));
+                        co = lerp_value(transform.position, counterPos);
+                        StartCoroutine(co);
                     }
 
                     isAtCounter = !isAtCounter;
