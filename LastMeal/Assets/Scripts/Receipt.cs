@@ -10,17 +10,19 @@ public class Receipt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        foodChoice.text = "Sandwich";
         ingredients.text = null;
-        if (foodChoice.text.Trim().ToLower() == "sandwich")
+        if (foodChoice.text.Trim().ToLower() == "sandwich".Trim().ToLower())
         {
             //print out ingredients of sandwich
             string tempString = "Bacon, Lettuce, Tomatoe"; //will add txt file
             string[] listOfIngredients = tempString.Split(',');
+            ingredients.text = "------------";
             foreach (string ingredient in listOfIngredients)
             {
-                ingredients.text += $"  * {ingredient}\n";
+                ingredients.text += $"\n* {ingredient}";
             }
+            ingredients.text += "\n------------";
 
         }
     }
