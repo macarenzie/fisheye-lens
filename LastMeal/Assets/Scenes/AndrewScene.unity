@@ -232,7 +232,7 @@ MonoBehaviour:
   testView: 1
   kitchenPos: {x: 0, y: -11}
   counterPos: {x: 0, y: 0}
-  swapDuration: 2
+  swapDuration: 0.4
 --- !u!114 &628766942
 MonoBehaviour:
   m_ObjectHideFlags: 0

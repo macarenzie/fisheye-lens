@@ -57,7 +57,7 @@ public class CameraMove : MonoBehaviour
                 // Choice B: smooth transition
                 case testtype.lerp:
                 {
-                    StopCoroutine(co);
+                    if (co != null) { StopCoroutine(co); }
 
                     if (isAtCounter) {
 
