@@ -23,6 +23,8 @@ public class TextChange : MonoBehaviour
     private SpriteRenderer cardScreen;
     [SerializeField]
     private SpriteRenderer checkedScreen;
+    [SerializeField]
+    private Canvas orderPaper;
 
     public void OnTextClick()
     {
@@ -48,10 +50,11 @@ public class TextChange : MonoBehaviour
             case 3:
                 checkedScreen.enabled = false;
                 normalScreen.enabled = true;
-                gimnyText.SetText("After you do that most people will tell you what they want to eat. It seems like your selection right now is a bit small, so I’ll just have a Bread Sandwich. To make it, look down (Space) and begin moving the ingredients to the right cooking station (Click the Bread and move it to the Cutting Board)....");
+                orderPaper.enabled = true;
+                gimnyText.SetText("After you do that most people will tell you what they want to eat. It seems like your selection right now is a bit small, so I’ll just have a Sandwich. To make it, look down (Space) and begin moving the ingredients to the right cooking station (Click the Bread and move it to the Cutting Board)....");
                 break;
             case 4:
-                gimnyText.SetText("Oh and if you don’t mind, could you please put a cigarette in the sandwich. I owe Salvator Fini just one more and if he doesn’t get it, I don’t know what he’ll do. Hey it’s alright if you don’t give it to me, I understand completely. Don’t want to ruin your first day, haha!");
+                gimnyText.SetText("Oh and if you don’t mind, could you please put a knife in the sandwich. I owe Salvator Fini just one more and if he doesn’t get it, I don’t know what he’ll do. Hey it’s alright if you don’t give it to me, I understand completely. Don’t want to ruin your first day, haha!");
                 break;
             case 5:
                 gimnyText.SetText("(To put contraband in a dish, open the drawer on the bottom left of your cooking station and place it in the final product. Be careful, too much contraband may alert the guards and have lasting consequences for your cooking career)");

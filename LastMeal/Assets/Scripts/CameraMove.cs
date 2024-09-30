@@ -15,6 +15,9 @@ public class CameraMove : MonoBehaviour
 
     [SerializeField] private float swapDuration;
 
+    [SerializeField] private Canvas orderCan;
+    [SerializeField] private Canvas cookCan;
+
     private bool isAtCounter = true;
     private IEnumerator co;
 
@@ -29,10 +32,14 @@ public class CameraMove : MonoBehaviour
 
             if (isAtCounter) {
                 co = lerp_value(transform.position, kitchenPos);
+                cookCan.enabled = true;
+                orderCan.enabled = false;
             }
 
             else {
                 co = lerp_value(transform.position, counterPos);
+                cookCan.enabled = false;
+                orderCan.enabled = true;
             }
 
             StartCoroutine(co);
