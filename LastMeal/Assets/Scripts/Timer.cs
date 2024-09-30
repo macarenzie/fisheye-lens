@@ -13,8 +13,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    // FIELDS -----------------------------------------------------------------
-    
+    #region FIELDS
     // timer logic
     [SerializeField] protected float initialTime;
     private float timeRemaining;
@@ -25,7 +24,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private Button sendOrderButton;
     [SerializeField] private Button resetButton;
     [SerializeField] protected TMP_Text timerText;
-
+    #endregion
 
     void Start()
     {
@@ -40,6 +39,7 @@ public class Timer : MonoBehaviour
 
         // print timer on screen
         displayTime(initialTime);
+        timerText.gameObject.SetActive(false); // timer hidden until started
     }
 
     void Update()
@@ -63,10 +63,9 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
             }
         }
-        
     }
 
-    // METHODS ----------------------------------------------------------------
+    #region METHODS
     void displayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
@@ -80,6 +79,7 @@ public class Timer : MonoBehaviour
     void startTimer()
     {
         timerIsRunning = true;
+        timerText.gameObject.SetActive(true);
     }
 
     void sendOrder()
@@ -99,4 +99,5 @@ public class Timer : MonoBehaviour
         // update display
         displayTime(timeRemaining);
     }
+    #endregion
 }
