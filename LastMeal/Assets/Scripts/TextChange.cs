@@ -5,8 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//Stuff to Add: Dialogue for receiving the right or wrong meal,
+//dialogue for getting his contraband or not, ending screen as well
+
 public class TextChange : MonoBehaviour
 {
+    //GimnyText is what dialogue is being displayed with textStage determining what
+    //line is being spoken
     [SerializeField]
     private TMP_Text gimnyText;
     private int textStage = 0;
@@ -25,6 +30,10 @@ public class TextChange : MonoBehaviour
         if (textStage > 6)
         {
             textStage = 6;
+        }
+        if (cardScreen.enabled == true)
+        {
+            textStage = 2;
         }
         switch (textStage)
         {
@@ -47,6 +56,8 @@ public class TextChange : MonoBehaviour
             case 5:
                 gimnyText.SetText("(To put contraband in a dish, open the drawer on the bottom left of your cooking station and place it in the final product. Be careful, too much contraband may alert the guards and have lasting consequences for your cooking career)");
                 break;
+            //Case 6 is currently the final stage but will be changed when an ending is able to
+            //be created
             case 6:
                 gimnyText.SetText("");
                 break;
@@ -55,15 +66,19 @@ public class TextChange : MonoBehaviour
 
     public void ApprovalClick()
     {
-        if (decisionButton.name == "RefuseButton")
+        if (cardScreen.enabled == true)
         {
-            gimnyText.SetText("Hey Chef, I know you're just trying things out, but my card is good.");
+            if (decisionButton.name == "RefuseButton")
+            {
+                gimnyText.SetText("Hey Chef, I know you're just trying things out, but my card is good.");
+            }
+            else if (decisionButton.name == "ApproveButton")
+            {
+                gimnyText.SetText("Thanks Chef, make sure to memorize the id number of the prisoner too. \nCould come in handy!");
+                cardScreen.enabled = false;
+                checkedScreen.enabled = true;
+            }
         }
-        else if (decisionButton.name == "ApproveButton")
-        {
-            gimnyText.SetText("Thanks Chef, make sure to memorize the id number of the prisoner too. \nCould come in handy!");
-            cardScreen.enabled = false;
-            checkedScreen.enabled = true;
-        }
+        
     }
 }
