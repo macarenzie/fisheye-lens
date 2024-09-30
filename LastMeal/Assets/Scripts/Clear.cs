@@ -6,14 +6,9 @@ public class Clear : MonoBehaviour
 {
     public IngrediantManager manager;
 
+    // Deletes everything based manager clear
     public void DeleteIngrediants()
     {
-        for(int i = 0; i < manager.foodList.Count; i++)
-        {
-            DestroyImmediate(this.manager.foodList[i].gameObject, true);
-            DestroyImmediate(this.manager.spriteInfoList[i], true);
-        }
-        manager.foodList.Clear();
-        manager.spriteInfoList.Clear();
+        manager.ClearList();
     }
 }

@@ -5,23 +5,36 @@ using UnityEngine.InputSystem;
 
 public class IngrediantManager : MonoBehaviour
 {
-    public List<GameObject> foodList = new List<GameObject> ();
-
     public List<SpriteInfo> spriteInfoList = new List<SpriteInfo> ();
+    public List<SpriteInfo> IngrediantList = new List<SpriteInfo> ();
 
     public IngrediantManager manager;
+    public Cook cooker;
+    public CompleteOrder complete;
 
-    Vector3 MousePos;
-    SpriteInfo spriteInfo;
+    public Vector3 MousePos;
 
+    // Creates a given sprite from whatever button is called
     public void AddSprite(SpriteInfo sprite, Vector3 pos)
     {
-        spriteInfoList.Add(Instantiate(sprite));
+        spriteInfoList.Add(Instantiate(sprite, pos, Quaternion.identity));
     }
 
-    public void AddObject(GameObject gameObject, Vector3 pos)
+    // Clears all lists, resets bools, and destroys all sprites
+    public void ClearList()
     {
-        //foodList.Add(Instantiate(gameObject, pos, Quaternion.identity));
+        for (int i = 0; i < manager.spriteInfoList.Count; i++)
+        {
+            DestroyImmediate(this.manager.spriteInfoList[i].gameObject);
+        }
+        
+        cooker.IsBread = false;
+        cooker.IsTomato = false;
+        cooker.IsContraband = false;
+
+        manager.spriteInfoList.Clear();
+        cooker.IngrediantsCombining.Clear();
+        complete.IngrediantsCompleting.Clear();
     }
 
     // Update is called once per frame

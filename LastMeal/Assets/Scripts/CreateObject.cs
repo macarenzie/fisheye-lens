@@ -10,13 +10,9 @@ public class CreateObject : MonoBehaviour
     public IngrediantManager manager;
     public Vector3 spawner;
 
+    // Creates a given ingrediant at a given spawn location onClick
     public void SpawnIngrediantSprite(SpriteInfo sprite)
     {
         manager.AddSprite(sprite, spawner);
-    }
-
-    public void SpawnIngrediantObject(GameObject ingrediant)
-    {
-        manager.AddObject(ingrediant, spawner);
     }
 }

@@ -11,11 +11,26 @@ public class SpriteInfo : MonoBehaviour
     SpriteRenderer renderor;
 
     public bool isColliding = false;
+    public bool isCombining = false;
+    public bool isCompleting = false;
 
+    // Methods for all states
     public bool IsColliding
     {
         get { return isColliding; }
         set { isColliding = value; }
+    }
+
+    public bool IsCombining
+    {
+        get { return isCombining; }
+        set { isCombining = value; }
+    }
+
+    public bool IsCompleting
+    {
+        get { return isCompleting; }
+        set { isCompleting = value; }
     }
 
     // Gets the Minimum bounds
@@ -33,17 +48,24 @@ public class SpriteInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Shows collision state
-        if (isColliding)
-        {
-            // draw red
-            renderor.color = Color.red;
-        }
-        else
-        {
-            // draw white
-            renderor.color = Color.white;
-        }
+        // Shows collision state, different for every state
+        // Only use for debugging and testing
+        //if (isColliding)
+        //{
+        //    renderor.color = Color.red;
+        //}
+        //if(isCombining)
+        //{
+        //    renderor.color = Color.blue;
+        //}
+        //if(isCompleting)
+        //{
+        //    renderor.color = Color.green;
+        //}
+        //else
+        //{
+        //    renderor.color = Color.white;
+        //}
     }
 
     // Use selected when looking at a spcific object
