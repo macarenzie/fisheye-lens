@@ -7,7 +7,7 @@ public class ButtonNavigation : MonoBehaviour
 {
     public void play_game()
     {
-        SceneManager.LoadScene("AndrewScene");
+        SceneManager.LoadScene("Main");
     }
 
     public void main_menu()
