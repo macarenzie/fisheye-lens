@@ -40,6 +40,7 @@ public class CameraMove : MonoBehaviour
                 co = lerp_value(transform.position, counterPos);
                 cookCan.enabled = false;
                 orderCan.enabled = true;
+                
             }
 
             StartCoroutine(co);
@@ -64,6 +65,7 @@ public class CameraMove : MonoBehaviour
 
             transform.position = Vector3.Lerp(start, end, t);
             timeElapsed += Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10.0f);
 
             yield return null;
         }
