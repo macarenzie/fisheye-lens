@@ -18,6 +18,9 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private Canvas orderCan;
     [SerializeField] private Canvas cookCan;
 
+    // timer stuff, adjust later
+    [SerializeField] private Timer timer;
+
     private bool isAtCounter = true;
     private IEnumerator co;
 
@@ -34,13 +37,16 @@ public class CameraMove : MonoBehaviour
                 co = lerp_value(transform.position, kitchenPos);
                 cookCan.enabled = true;
                 orderCan.enabled = false;
+
+                timer.ShowTimer(false);
             }
 
             else {
                 co = lerp_value(transform.position, counterPos);
                 cookCan.enabled = false;
                 orderCan.enabled = true;
-                
+
+                timer.ShowTimer(true);
             }
 
             StartCoroutine(co);

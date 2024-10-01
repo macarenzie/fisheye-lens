@@ -18,12 +18,15 @@ public class Timer : MonoBehaviour
     [SerializeField] protected float initialTime;
     private float timeRemaining;
     protected bool timerIsRunning;
-    
+
     // ui
+    /* used for initial testing
     [SerializeField] private Button startButton;
-    [SerializeField] private Button sendOrderButton;
     [SerializeField] private Button resetButton;
+    */
+    [SerializeField] private Button sendOrderButton;
     [SerializeField] protected TMP_Text timerText;
+    [SerializeField] private Canvas cookCan;
     #endregion
 
     void Start()
@@ -33,12 +36,12 @@ public class Timer : MonoBehaviour
         timeRemaining = initialTime;
 
         // hook up the buttons to their methods
-        startButton.onClick.AddListener(startTimer);
-        sendOrderButton.onClick.AddListener(sendOrder);
-        resetButton.onClick.AddListener(resetTimer);
+        // startButton.onClick.AddListener(startTimer);
+        sendOrderButton.onClick.AddListener(SendOrder);
+        // resetButton.onClick.AddListener(resetTimer);
 
         // print timer on screen
-        displayTime(initialTime);
+        DisplayTime(initialTime);
         timerText.gameObject.SetActive(false); // timer hidden until started
     }
 
@@ -51,7 +54,7 @@ public class Timer : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
-                displayTime(timeRemaining);
+                DisplayTime(timeRemaining);
             }
             
             // determine if the timer ran out
@@ -66,7 +69,7 @@ public class Timer : MonoBehaviour
     }
 
     #region METHODS
-    void displayTime(float timeToDisplay)
+    void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
 
@@ -76,19 +79,27 @@ public class Timer : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    void startTimer()
+    public void ShowTimer(bool isVisible)
+    {
+        Debug.Log("ShowTimer");
+        timerText.gameObject.SetActive(isVisible);
+        StartTimer();
+    }
+
+    void StartTimer()
     {
         timerIsRunning = true;
         timerText.gameObject.SetActive(true);
     }
 
-    void sendOrder()
+    void SendOrder()
     {
         timerIsRunning = false;
         timerText.text = "Order complete";
+        Debug.Log("Order complete");
     }
 
-    void resetTimer()
+    void ResetTimer()
     {
         // stop the timer from running
         timerIsRunning = false;
@@ -97,7 +108,7 @@ public class Timer : MonoBehaviour
         timeRemaining = initialTime;
 
         // update display
-        displayTime(timeRemaining);
+        DisplayTime(timeRemaining);
     }
     #endregion
 }
