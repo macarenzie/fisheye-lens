@@ -15,7 +15,7 @@ public class Receipt : MonoBehaviour
         if (foodChoice.text.Trim().ToLower() == "sandwich".Trim().ToLower())
         {
             //print out ingredients of sandwich
-            string tempString = "Bacon, Lettuce, Tomatoe"; //will add txt file
+            string tempString = "Bread, Tomato"; //will add txt file
             string[] listOfIngredients = tempString.Split(',');
             ingredients.text = "------------";
             foreach (string ingredient in listOfIngredients)

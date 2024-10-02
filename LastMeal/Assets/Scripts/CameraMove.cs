@@ -17,12 +17,22 @@ public class CameraMove : MonoBehaviour
 
     [SerializeField] private Canvas orderCan;
     [SerializeField] private Canvas cookCan;
+    [SerializeField] private Canvas receiptCan;
+    private bool receiptAppeared = false;
 
     // timer stuff, adjust later
     [SerializeField] private Timer timer;
 
     private bool isAtCounter = true;
     private IEnumerator co;
+
+    private void Update()
+    {
+        if (receiptCan.enabled == true)
+        {
+            receiptAppeared = true;
+        }
+    }
 
     /// <summary>
     /// Handles the movement of parented camera
@@ -31,12 +41,14 @@ public class CameraMove : MonoBehaviour
     public void swap_view(InputAction.CallbackContext input)
     {
         if (input.performed) {
+            Debug.Log(receiptAppeared);
             if (co != null) { StopCoroutine(co); }
 
             if (isAtCounter) {
                 co = lerp_value(transform.position, kitchenPos);
                 cookCan.enabled = true;
                 orderCan.enabled = false;
+                receiptCan.enabled = false;
 
                 timer.ShowTimer(false);
             }
@@ -45,6 +57,10 @@ public class CameraMove : MonoBehaviour
                 co = lerp_value(transform.position, counterPos);
                 cookCan.enabled = false;
                 orderCan.enabled = true;
+                if (receiptAppeared)
+                {
+                    receiptCan.enabled = true;
+                }
 
                 timer.ShowTimer(true);
             }

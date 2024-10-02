@@ -433,6 +433,7 @@ MonoBehaviour:
   IngrediantsCombining: []
   manager: {fileID: 75528698}
   spawner: {fileID: 1499155732}
+  gimnyText: {fileID: 1451392129}
   isBread: 0
   isTomato: 0
   isContraband: 0
@@ -2408,6 +2409,7 @@ MonoBehaviour:
   swapDuration: 0.4
   orderCan: {fileID: 1982553397}
   cookCan: {fileID: 728499590}
+  receiptCan: {fileID: 1174720463}
   timer: {fileID: 1493514437}
 --- !u!81 &1266307110
 AudioListener:

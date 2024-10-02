@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,13 @@ public class Cook : MonoBehaviour
     public List<SpriteInfo> IngrediantsCombining = new List<SpriteInfo>();
     public IngrediantManager manager;
     public GameObject spawner;
+
+    //Triggers for finished dialogue
+    bool contraTrigger = false;
+    bool normalTrigger = false;
+    [SerializeField]
+    private TMP_Text gimnyText;
+
 
     // Very poorly implemented cooking bools for recipes
     [SerializeField]
@@ -50,6 +58,7 @@ public class Cook : MonoBehaviour
             manager.AddSprite(RecipeList[1], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));            
+            contraTrigger = true;
         }
         
         // Contraband sandwich
@@ -61,12 +70,22 @@ public class Cook : MonoBehaviour
             manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));            
+            normalTrigger = true;
         }
     }   
 
     // Always check to see if there are objects in the combine list
     void Update()
     {
+        if (contraTrigger)
+        {
+            gimnyText.SetText("Thanks Chef, you’re a lifesaver! Your good pal Gimny will put in a good word with the other inmates. You’re gonna have a great time here man, I just know it!\n(YOU WIN||EXPERIENCE OVER)");
+        }
+        else if (normalTrigger)
+        {
+            gimnyText.SetText("Thanks for the food Chef! Hopefully I’ll be able to get that knife somewhere else. Have a good day man…\n(YOU WIN||EXPERIENCE OVER)");
+        }
+
         // Iterate through all objects
         foreach(SpriteInfo sprite in manager.spriteInfoList)
         {
@@ -91,6 +110,7 @@ public class Cook : MonoBehaviour
                     manager.IngrediantList[0].GetComponent<SpriteRenderer>().sprite)
                 {
                     isBread = true;
+                    Debug.Log(isBread);
                 }
 
                 // Tomato bool
@@ -98,6 +118,7 @@ public class Cook : MonoBehaviour
                     manager.IngrediantList[1].GetComponent<SpriteRenderer>().sprite)
                 {
                     isTomato = true;
+                    Debug.Log(isTomato);
                 }
 
                 // Contraband bool
@@ -105,6 +126,7 @@ public class Cook : MonoBehaviour
                     manager.IngrediantList[2].GetComponent<SpriteRenderer>().sprite)
                 {
                     isContraband = true;
+                    Debug.Log(isContraband);
                 }
                 IngrediantsCombining.Add(sprite);
                 break;
