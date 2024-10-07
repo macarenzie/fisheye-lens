@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Moves the parented camera between the counter and the kitchen space
+/// Moves the parented object smoothly along an animation curve from point A to point B.
+/// Primarily used to move from the Counter to the Kitchen.
 /// </summary>
+/// Author(s): Andrew Jameison
+
 public class CameraMove : MonoBehaviour
 {
     [SerializeField] private AnimationCurve lerpCurve;
@@ -15,6 +18,7 @@ public class CameraMove : MonoBehaviour
 
     [SerializeField] private float swapDuration;
 
+    // Information to make the canvases visible only in the kitchen
     [SerializeField] private Canvas orderCan;
     [SerializeField] private Canvas cookCan;
     [SerializeField] private Canvas receiptCan;
