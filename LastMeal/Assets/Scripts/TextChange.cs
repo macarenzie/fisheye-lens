@@ -25,6 +25,8 @@ public class TextChange : MonoBehaviour
     private SpriteRenderer checkedScreen;
     [SerializeField]
     private Canvas orderPaper;
+    [SerializeField]
+    private GameObject textHolder;
 
     public void OnTextClick()
     {
@@ -44,6 +46,7 @@ public class TextChange : MonoBehaviour
                 break;
             case 2:
                 gimnyText.SetText("");
+                textHolder.SetActive(false);
                 normalScreen.enabled = false;
                 cardScreen.enabled = true;
                 break;
@@ -76,12 +79,14 @@ public class TextChange : MonoBehaviour
             if (decisionButton.name == "RefuseButton")
             {
                 gimnyText.SetText("Hey Chef, I know you're just trying things out, but my card is good.");
+                textHolder.SetActive(true);
             }
             else if (decisionButton.name == "ApproveButton")
             {
                 gimnyText.SetText("Thanks Chef, make sure to memorize the id number of the prisoner too. \nCould come in handy!");
                 cardScreen.enabled = false;
                 checkedScreen.enabled = true;
+                textHolder.SetActive(true);
             }
         }
         
