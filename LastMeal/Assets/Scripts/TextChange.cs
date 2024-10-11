@@ -67,6 +67,7 @@ public class TextChange : MonoBehaviour
                 break;
             case 7:
                 gimnyText.SetText("");
+                textHolder.SetActive(false);
                 break;
 
         }

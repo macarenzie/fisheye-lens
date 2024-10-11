@@ -51,15 +51,15 @@ public class CameraMove : MonoBehaviour
             if (isAtCounter) {
                 co = lerp_value(transform.position, kitchenPos);
                 cookCan.enabled = true;
-                orderCan.enabled = false;
-                receiptCan.enabled = false;
+                //orderCan.enabled = false;
+                //receiptCan.enabled = false;
 
                 timer.ShowTimer(false);
             }
 
             else {
                 co = lerp_value(transform.position, counterPos);
-                cookCan.enabled = false;
+                //cookCan.enabled = false;
                 orderCan.enabled = true;
                 if (receiptAppeared)
                 {

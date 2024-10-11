@@ -16,6 +16,9 @@ public class Cook : MonoBehaviour
     bool normalTrigger = false;
     [SerializeField]
     private TMP_Text gimnyText;
+    [SerializeField]
+    private GameObject textHolder;
+
 
 
     // Very poorly implemented cooking bools for recipes
@@ -59,6 +62,7 @@ public class Cook : MonoBehaviour
                 spawner.transform.position.y,
                 -1));            
             contraTrigger = true;
+            textHolder.SetActive(true);
         }
         
         // Contraband sandwich
@@ -71,6 +75,7 @@ public class Cook : MonoBehaviour
                 spawner.transform.position.y,
                 -1));            
             normalTrigger = true;
+            textHolder.SetActive(true);
         }
     }   
 
