@@ -4,81 +4,82 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+
+/// <summary>
+/// Transitions between menus and scenes using events, most connected to button events
+/// </summary>
+/// Author(s): Andrew Jameison
+/// 
+
 public class ButtonNavigation : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve lerpCurve;
+    /// <summary>
+    /// Should be "Main" when building, or "AndrewScene" when testing
+    /// </summary>
+    private const string game_scene = "AndrewScene";
 
-    // The original and secondary positions the menu will lerp between respectively
-    [SerializeField] private Vector2 positionA;
-    [SerializeField] private Vector2 positionB;
-
-    [SerializeField] private float swapDuration = 0.2f;
-
-    private bool isHidden = true;
-    private IEnumerator co;
-
+    /// <summary>
+    /// Button Event. Loads up the game
+    /// </summary>
     public void play_game()
     {
-        SceneManager.LoadScene("Main");
+        // TODO: Currently used to reset the game after fail-condition, does this cause some overhead?
+            // Perhaps change to resetting individual gameobjects, not sure...
+
+        SceneManager.LoadScene(game_scene);
+
+        prepare_game();
     }
 
+    /// <summary>
+    /// Will be used to make any changes between scenes
+    /// </summary>
+    public void prepare_game()
+    {
+        // If you ever need some specific thing to happen when the game resets, put it into this method
+
+        // TODO: Eventually pass in saved data and what day the player is currently on 
+    }
+
+    /// <summary>
+    /// Button Event. Returns to the main menu / navigation scene
+    /// </summary>
     public void main_menu()
     {
         SceneManager.LoadScene("Navigation");
     }
 
+    /// <summary>
+    /// Opens the pause menu during the game.
+    /// </summary>
+    public void reveal_menu()
+    {
+        //if (SceneManager.GetActiveScene().name == game_scene) 
+        //{
+        //
+        //    transform.GetChild(0).gameObject.SetActive(true); // MenuBackground
+        //    transform.GetChild(1).gameObject.SetActive(true); // Settings
+        //}
+
+        Transform Backdrop = transform.GetChild(0);
+        Transform Settings = transform.GetChild(1);
+
+        if (Backdrop != null && Settings != null && Backdrop.name == "MenuBackdrop" && Settings.name == "Settings") {
+            Backdrop.gameObject.SetActive(true);
+            Settings.gameObject.SetActive(true);
+        }
+
+        else {
+            Debug.Log("Timer.cs : Could not find Settings menu in GameMenus heirarchy");
+        }
+    }
+
+    /// <summary>
+    /// Button Event. Exits the application
+    /// </summary>
     public void quit_game()
     {
+
         Application.Quit();
-    }
-
-    /// <summary>
-    /// Handles the movement of parented camera
-    /// </summary>
-    /// <param name="input"></param>
-    public void swap_view(InputAction.CallbackContext input)
-    {
-        if (input.performed)
-        {
-            if (co != null) { StopCoroutine(co); }
-
-            if (isHidden)
-            {
-                co = lerp_value(transform.position, positionB);
-            }
-
-            else
-            {
-                co = lerp_value(transform.position, positionA);
-            }
-
-            StartCoroutine(co);
-
-            isHidden = !isHidden;
-        }
-    }
-
-    /// <summary>
-    /// Uses math to provide a more smooth transition between start and end
-    /// </summary>
-    /// <param name="start"></param>
-    /// <param name="end"></param>
-    /// <returns></returns>
-    private IEnumerator lerp_value(Vector2 start, Vector2 end)
-    {
-        float timeElapsed = 0;
-
-        while (timeElapsed < swapDuration)
-        {
-            float t = timeElapsed / swapDuration;
-
-            t = lerpCurve.Evaluate(t);
-
-            transform.position = Vector3.Lerp(start, end, t);
-            timeElapsed += Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
-
-            yield return null;
-        }
     }
 }

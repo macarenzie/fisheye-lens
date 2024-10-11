@@ -11,6 +11,10 @@ using UnityEngine.InputSystem;
 
 public class CameraMove : MonoBehaviour
 {
+    private bool isAtCounter = true;
+    private IEnumerator co;
+
+    [Header("Lerp Movement")]
     [SerializeField] private AnimationCurve lerpCurve;
 
     [SerializeField] private Vector2 kitchenPos;
@@ -18,6 +22,7 @@ public class CameraMove : MonoBehaviour
 
     [SerializeField] private float swapDuration;
 
+    [Header("Canvas Info")]
     // Information to make the canvases visible only in the kitchen
     [SerializeField] private Canvas orderCan;
     [SerializeField] private Canvas cookCan;
@@ -27,8 +32,7 @@ public class CameraMove : MonoBehaviour
     // timer stuff, adjust later
     [SerializeField] private Timer timer;
 
-    private bool isAtCounter = true;
-    private IEnumerator co;
+
 
     private void Update()
     {
@@ -54,7 +58,7 @@ public class CameraMove : MonoBehaviour
                 orderCan.enabled = false;
                 receiptCan.enabled = false;
 
-                timer.ShowTimer(false);
+                timer.ShowTimer(true);
             }
 
             else {
@@ -66,7 +70,7 @@ public class CameraMove : MonoBehaviour
                     receiptCan.enabled = true;
                 }
 
-                timer.ShowTimer(true);
+                timer.ShowTimer(false);
             }
 
             StartCoroutine(co);
