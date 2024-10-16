@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Cook : MonoBehaviour
 {
-    public List<SpriteInfo> RecipeList = new List<SpriteInfo>();
-    public List<SpriteInfo> IngrediantsCombining = new List<SpriteInfo>();
+    public List<Drag> RecipeList = new List<Drag>();
+    public List<Drag> IngrediantsCombining = new List<Drag>();
     public IngrediantManager manager;
     public GameObject spawner;
 
@@ -87,20 +87,20 @@ public class Cook : MonoBehaviour
         }
 
         // Iterate through all objects
-        foreach(SpriteInfo sprite in manager.spriteInfoList)
+        foreach(Drag sprite in manager.spriteInfoList)
         {
             // Determine if the object is already in the list
-            if (sprite.isCombining & manager.AABBCheck(sprite,
+            if (sprite.spriteInfo.isCombining & manager.AABBCheck(sprite.spriteInfo,
                 new Vector2(spawner.transform.position.x, spawner.transform.position.y)))
             {
                 break;
             }
 
             // Add to the list if the sprite is touching the tray and not already touching
-            else if (manager.AABBCheck(sprite,
+            else if (manager.AABBCheck(sprite.spriteInfo,
                 new Vector2(spawner.transform.position.x, spawner.transform.position.y)))
             {
-                sprite.isCombining = true;
+                sprite.spriteInfo.isCombining = true;
 
                 // determine what ingrediant it is and turn on the bool
                 // Based off acceptable combining ingrediants from manager list
@@ -133,13 +133,13 @@ public class Cook : MonoBehaviour
             }
 
             // Remove the object from the list if its off the tray
-            else if (sprite.IsCombining & !manager.AABBCheck(sprite,
+            else if (sprite.spriteInfo.IsCombining & !manager.AABBCheck(sprite.spriteInfo,
                 new Vector2(spawner.transform.position.x, spawner.transform.position.y)))
             {
-                sprite.IsCombining = false;
+                sprite.spriteInfo.IsCombining = false;
 
                 // Find the object in the ingrediants list and remove it
-                foreach (SpriteInfo ingrediant in IngrediantsCombining)
+                foreach (Drag ingrediant in IngrediantsCombining)
                 {
                     if(sprite == ingrediant)
                     {

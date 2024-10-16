@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class IngrediantManager : MonoBehaviour
 {
-    public List<SpriteInfo> spriteInfoList = new List<SpriteInfo> ();
-    public List<SpriteInfo> IngrediantList = new List<SpriteInfo> ();
+    public List<Drag> spriteInfoList = new List<Drag> ();
+    public List<Drag> IngrediantList = new List<Drag> ();
 
     public IngrediantManager manager;
     public Cook cooker;
@@ -15,7 +15,7 @@ public class IngrediantManager : MonoBehaviour
     public Vector3 MousePos;
 
     // Creates a given sprite from whatever button is called
-    public void AddSprite(SpriteInfo sprite, Vector3 pos)
+    public void AddSprite(Drag sprite, Vector3 pos)
     {
         spriteInfoList.Add(Instantiate(sprite, pos, Quaternion.identity));
     }
@@ -45,13 +45,13 @@ public class IngrediantManager : MonoBehaviour
         
         // Loop through the list to check each sprite for collision
         // Set sprite isColliding to true when collision exists
-        foreach (SpriteInfo sprite in spriteInfoList)
+        foreach (Drag sprite in spriteInfoList)
         {
             // Iterate through the list checking for collisions
-            if (AABBCheck(sprite, MousePos))
+            if (AABBCheck(sprite.spriteInfo, MousePos))
             {
                 // Collision and stop iterating
-                sprite.isColliding = true;
+                sprite.spriteInfo.isColliding = true;
                 
                 // Reset location        
                 break;
@@ -59,7 +59,7 @@ public class IngrediantManager : MonoBehaviour
             else
             {
                 // No collision
-                sprite.isColliding = false;
+                sprite.spriteInfo.isColliding = false;
             }
         }
     }

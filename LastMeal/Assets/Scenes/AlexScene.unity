@@ -2807,8 +2807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecipeList:
-  - {fileID: 2367325949873190152, guid: 8525d67315d2c2642834c04880f1153c, type: 3}
-  - {fileID: 2214900346142310535, guid: b0b8016376cb1d2489983e7340ba259e, type: 3}
+  - {fileID: 2096434672378634163, guid: 8525d67315d2c2642834c04880f1153c, type: 3}
+  - {fileID: 1859826552875269946, guid: b0b8016376cb1d2489983e7340ba259e, type: 3}
   IngrediantsCombining: []
   manager: {fileID: 1787970648}
   spawner: {fileID: 1504822730}
@@ -3461,8 +3461,8 @@ MonoBehaviour:
         m_MethodName: SpawnIngrediantSprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: -6413843575969437353, guid: 00d3324689944e24e89d9ac40d7c4578, type: 3}
-          m_ObjectArgumentAssemblyTypeName: SpriteInfo, Assembly-CSharp
+          m_ObjectArgument: {fileID: 730081679822524621, guid: 00d3324689944e24e89d9ac40d7c4578, type: 3}
+          m_ObjectArgumentAssemblyTypeName: Drag, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3697,8 +3697,8 @@ MonoBehaviour:
         m_MethodName: SpawnIngrediantSprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3135638740989995691, guid: 83ca1cfca18fefc4e86979199f6108c1, type: 3}
-          m_ObjectArgumentAssemblyTypeName: SpriteInfo, Assembly-CSharp
+          m_ObjectArgument: {fileID: 236272918379846498, guid: 83ca1cfca18fefc4e86979199f6108c1, type: 3}
+          m_ObjectArgumentAssemblyTypeName: Drag, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4173,6 +4173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1787970649}
   - component: {fileID: 1787970648}
+  - component: {fileID: 1787970650}
   m_Layer: 0
   m_Name: GameObject Manager
   m_TagString: Untagged
@@ -4194,9 +4195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteInfoList: []
   IngrediantList:
-  - {fileID: -6413843575969437353, guid: 00d3324689944e24e89d9ac40d7c4578, type: 3}
-  - {fileID: 3135638740989995691, guid: 83ca1cfca18fefc4e86979199f6108c1, type: 3}
-  - {fileID: -4219221091193799702, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
+  - {fileID: 730081679822524621, guid: 00d3324689944e24e89d9ac40d7c4578, type: 3}
+  - {fileID: 236272918379846498, guid: 83ca1cfca18fefc4e86979199f6108c1, type: 3}
+  - {fileID: 2435229700410165836, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
   manager: {fileID: 1787970648}
   cooker: {fileID: 1282710878}
   complete: {fileID: 302767812}
@@ -4216,6 +4217,22 @@ Transform:
   m_Father: {fileID: 1240694575}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1787970650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787970647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26da2d4d07ef5b146ab3ff7060d5d5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapPoints:
+  - {fileID: 1504822732}
+  - {fileID: 1255198047}
+  snapRange: 0.5
 --- !u!1 &1808877730
 GameObject:
   m_ObjectHideFlags: 0
@@ -4489,8 +4506,8 @@ MonoBehaviour:
         m_MethodName: SpawnIngrediantSprite
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: -4219221091193799702, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
-          m_ObjectArgumentAssemblyTypeName: SpriteInfo, Assembly-CSharp
+          m_ObjectArgument: {fileID: 2435229700410165836, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
+          m_ObjectArgumentAssemblyTypeName: Drag, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

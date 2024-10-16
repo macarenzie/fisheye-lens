@@ -5,13 +5,13 @@ using UnityEngine;
 public class Snap : MonoBehaviour
 {
     public List<Transform> snapPoints;
-    public List<Drag> draggableObjects;
+    public IngrediantManager ingrediantManager;
     public float snapRange = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Drag dragabbles in draggableObjects)
+        foreach(Drag dragabbles in ingrediantManager.spriteInfoList)
         {
             dragabbles.dragEndCallback = OnDragEnded;
         }
@@ -19,7 +19,7 @@ public class Snap : MonoBehaviour
 
     private void OnDragEnded(Drag draggable)
     {
-        float closestDistance = -1;
+        float closestDistance = 1;
         Transform closestSnappingPoint = null;
 
         foreach(Transform snapPoint in snapPoints)

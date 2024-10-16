@@ -43,29 +43,29 @@ public class CompleteOrder : MonoBehaviour
     void Update()
     {
         // Iterate through all objects
-        foreach (SpriteInfo sprite in manager.spriteInfoList)
+        foreach (Drag sprite in manager.spriteInfoList)
         {
             // Determine if the object is already in the list
-            if (sprite.isCompleting & manager.AABBCheck(sprite,
+            if (sprite.spriteInfo.isCompleting & manager.AABBCheck(sprite.spriteInfo,
                 new Vector2(deSpawner.transform.position.x, deSpawner.transform.position.y)))
             {
                 break;
             }
 
             // Add to the list if the sprite is touching the tray and not already touching
-            else if (manager.AABBCheck(sprite,
+            else if (manager.AABBCheck(sprite.spriteInfo,
                 new Vector2(deSpawner.transform.position.x, deSpawner.transform.position.y)))
             {
-                sprite.isCompleting = true;
-                IngrediantsCompleting.Add(sprite);
+                sprite.spriteInfo.isCompleting = true;
+                IngrediantsCompleting.Add(sprite.spriteInfo);
                 break;
             }
 
             // Remove the object from the list if its off the tray
-            else if (sprite.isCompleting & !manager.AABBCheck(sprite,
+            else if (sprite.spriteInfo.isCompleting & !manager.AABBCheck(sprite.spriteInfo,
                 new Vector2(deSpawner.transform.position.x, deSpawner.transform.position.y)))
             {
-                sprite.isCompleting = false;
+                sprite.spriteInfo.isCompleting = false;
 
                 // Find the object in the ingrediants list and remove it
                 foreach (SpriteInfo ingrediant in IngrediantsCompleting)

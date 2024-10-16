@@ -9,6 +9,7 @@ public class Drag : MonoBehaviour
     public SpriteInfo spriteInfo;
     public Vector3 MousePos;
 
+    [SerializeField]
     bool IsDragging = false;
     static bool IsSingle = false;
 

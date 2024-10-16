@@ -11,7 +11,7 @@ public class CreateObject : MonoBehaviour
     public GameObject spawner;
 
     // Creates a given ingrediant at a given spawn location onClick
-    public void SpawnIngrediantSprite(SpriteInfo sprite)
+    public void SpawnIngrediantSprite(Drag sprite)
     {
         manager.AddSprite(sprite, new Vector3(spawner.transform.position.x, 
             spawner.transform.position.y, spawner.transform.position.z - 1));
