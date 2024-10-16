@@ -27,6 +27,8 @@ public class Timer : MonoBehaviour
     [SerializeField] private Button sendOrderButton;
     [SerializeField] protected TMP_Text timerText;
     [SerializeField] private Canvas cookCan;
+
+    [SerializeField] private GameObject menus;
     #endregion
 
     void Start()
@@ -61,11 +63,17 @@ public class Timer : MonoBehaviour
             else
             {
                 Debug.Log("Order failed");
-                timerText.text = "Order failed";
+                
                 timeRemaining = 0;
                 timerIsRunning = false;
+
+                OrderIncomplete();
             }
         }
+
+        // Display the timer
+
+
     }
 
     #region METHODS
@@ -89,14 +97,54 @@ public class Timer : MonoBehaviour
     void StartTimer()
     {
         timerIsRunning = true;
-        timerText.gameObject.SetActive(true);
+        //timerText.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Pulls up the Success menu under GameMenus 
+    /// </summary>
     void SendOrder()
     {
         timerIsRunning = false;
         timerText.text = "Order complete";
         Debug.Log("Order complete");
+
+        // TODO: disable the ability to access the pause menu
+
+        Transform Backdrop = menus.transform.GetChild(0);
+        Transform WinState = menus.transform.GetChild(2);
+
+        if (Backdrop != null && WinState != null && Backdrop.name == "MenuBackdrop" && WinState.name == "Success") {
+            Backdrop.gameObject.SetActive(true);
+            WinState.gameObject.SetActive(true);
+        }
+
+        else {
+            Debug.Log("Timer.cs : Could not find Success menu in GameMenus heirarchy");
+        }
+
+    }
+
+    /// <summary>
+    /// Pulls up the failure menu under GameMenus
+    /// </summary>
+    void OrderIncomplete()
+    {
+        // TODO: disable the ability to access the pause menu
+
+        timerIsRunning = false;
+
+        Transform Backdrop = menus.transform.GetChild(0);
+        Transform FailState = menus.transform.GetChild(3);
+
+        if (Backdrop != null && FailState != null && Backdrop.name == "MenuBackdrop" && FailState.name == "Failure") {
+            Backdrop.gameObject.SetActive(true);
+            FailState.gameObject.SetActive(true);
+        }
+
+        else {
+            Debug.Log("Timer.cs : Could not find Failure menu in GameMenus heirarchy");
+        }
     }
 
     void ResetTimer()
@@ -111,4 +159,6 @@ public class Timer : MonoBehaviour
         DisplayTime(timeRemaining);
     }
     #endregion
+
+
 }
