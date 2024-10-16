@@ -12,12 +12,16 @@ public class IngrediantManager : MonoBehaviour
     public Cook cooker;
     public CompleteOrder complete;
 
+    public Canvas Parent;
+
     public Vector3 MousePos;
 
     // Creates a given sprite from whatever button is called
     public void AddSprite(Drag sprite, Vector3 pos)
     {
-        spriteInfoList.Add(Instantiate(sprite, pos, Quaternion.identity));
+        Drag childObj = Instantiate(sprite, pos, Quaternion.identity);
+        childObj.transform.SetParent(Parent.transform);
+        spriteInfoList.Add(childObj);
     }
 
     // Clears all lists, resets bools, and destroys all sprites
@@ -74,6 +78,24 @@ public class IngrediantManager : MonoBehaviour
             spriteB.x > spriteA.RectMin.x &&
             spriteB.y < spriteA.RectMax.y &&
             spriteB.y > spriteA.RectMin.y)
+        {
+            // collision
+            return true;
+        }
+
+        // No collision
+        return false;
+    }
+
+    public bool AABBTransformCheck(Transform spriteA, SpriteInfo spriteB)
+    {
+        // Do check
+        // Uses a method found in sprite info to get bounds of sprites
+
+        if (spriteB.RectMax.x < spriteA.localPosition.x &&
+            spriteB.RectMax.x > spriteA.localPosition.x &&
+            spriteB.RectMax.y < spriteA.localPosition.y &&
+            spriteB.RectMax.y > spriteA.localPosition.y)
         {
             // collision
             return true;

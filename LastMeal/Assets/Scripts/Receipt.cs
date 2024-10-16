@@ -5,7 +5,7 @@ using TMPro;
 using System.IO;
 using System;
 using System.Linq;
-using Unity.Mathematics;
+//using Unity.Mathematics;
 using System.Security.Cryptography;
 
 public class Receipt : MonoBehaviour
