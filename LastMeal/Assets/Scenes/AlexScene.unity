@@ -4562,7 +4562,7 @@ MonoBehaviour:
   - {fileID: 1741251723}
   - {fileID: 1340263612}
   ingrediantManager: {fileID: 1787970648}
-  snapRange: 20
+  snapRange: 40
   closestDistance: 0
 --- !u!1 &1808877730
 GameObject:
