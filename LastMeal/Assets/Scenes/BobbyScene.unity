@@ -1852,37 +1852,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &806152133
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 806152134}
-  m_Layer: 0
-  m_Name: Text_Collection (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &806152134
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806152133}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.018032338, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &838764259
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,6 +3096,7 @@ MonoBehaviour:
   manager: {fileID: 1375022393}
   cooker: {fileID: 35788222}
   complete: {fileID: 1095544792}
+  Parent: {fileID: 0}
   MousePos: {x: 0, y: 0, z: 0}
 --- !u!4 &1375022394
 Transform:
@@ -4341,8 +4311,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hey Chef! Remember me? It's Gimny...from high school...\n\n\t   \t   (Click
-    Arrow To Proceed)"
+  m_text: "Hey Chef! Remember me? It's Gimny...from high school...\n\t   \t   (Click
+    Arrow To Proceed)\n               (Be Sure To Click Through All Text)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 875f0ad68aed2ef4a83cec93f9c63af5, type: 2}
   m_sharedMaterial: {fileID: -8634334275140805856, guid: 875f0ad68aed2ef4a83cec93f9c63af5, type: 2}
