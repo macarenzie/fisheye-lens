@@ -4556,11 +4556,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPoints:
-  - {fileID: 1504822732}
   - {fileID: 1255198047}
   - {fileID: 804092925}
   - {fileID: 76082107}
   - {fileID: 1741251723}
+  - {fileID: 1340263612}
   ingrediantManager: {fileID: 1787970648}
   snapRange: 20
   closestDistance: 0
