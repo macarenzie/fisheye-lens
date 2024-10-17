@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using TMPro;
 
 //Stuff to Add: Dialogue for receiving the right or wrong meal,
@@ -27,47 +28,56 @@ public class TextChange : MonoBehaviour
     private Canvas orderPaper;
     [SerializeField]
     private GameObject textHolder;
+    [SerializeField]
+    private TextAsset dialogue;
+    StreamReader reader;
+
+
+    private void Start()
+    {
+        reader = new StreamReader("Assets\\Text\\" + dialogue.name + ".txt");
+    }
+
 
     public void OnTextClick()
     {
-        textStage++;
-        if (textStage > 7)
+        
+        textStage++;    
+        if (textStage > 10)
         {
-            textStage = 7;
+            textStage = 10;
         }
-        if (cardScreen.enabled == true)
+        else
         {
-            textStage = 2;
+            if (cardScreen.enabled == true)
+            {
+                textStage = 4;
+            }
+            else
+            {
+                gimnyText.SetText(reader.ReadLine());
+            }
         }
+        
         switch (textStage)
         {
-            case 1:
-                gimnyText.SetText("Well since it's your first day, I'll help you through your first order! Consider it a welcoming gift from me to you. First youll have to check my Punch Card to see if it's up to date. Make sure the day hasn't been punched already, don't wanna give people seconds. \n(Today is R) ");
-                break;
-            case 2:
-                gimnyText.SetText("");
+            case 4:
                 textHolder.SetActive(false);
                 normalScreen.enabled = false;
                 cardScreen.enabled = true;
                 break;
-            case 3:
+            case 6:
                 checkedScreen.enabled = false;
                 normalScreen.enabled = true;
                 orderPaper.enabled = true;
-                gimnyText.SetText("After you do that most people will tell you what they want to eat. It seems like your selection right now is a bit small, so I'll just have a Sandwich. To make it, look down (Space) and begin moving the ingredients to the right cooking station (Click the Ingredients and move them to the Cutting Board)....");
                 break;
-            case 4:
-                gimnyText.SetText("Oh and if you don't mind, could you please put a knife in the sandwich. I owe Salvator Fini just one more and if he doesn't get it, I don't know what he'll do. Hey it's alright if you don't give it to me, I understand completely. Don't want to ruin your first day, haha!....");
-                break;
-            case 5:
-                gimnyText.SetText("(To put contraband in a dish, open the drawer on the bottom left of your cooking station and place it in the final product. Be careful, too much contraband may alert the guards and have lasting consequences for your cooking career)....");
-                break;
-            case 6:
-                gimnyText.SetText("(For now: Spawn in each ingredient and place them in reverse order.\nSpawn: Bread, Tomato, Knife (Optional)\nPlace: Knife (Optional), Tomato, Bread");
-                break;
-            case 7:
+            case 10:
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
+                if (reader.EndOfStream)
+                {
+                    reader.Close();
+                }
                 break;
 
         }
@@ -84,7 +94,7 @@ public class TextChange : MonoBehaviour
             }
             else if (decisionButton.name == "ApproveButton")
             {
-                gimnyText.SetText("Thanks Chef, make sure to memorize the id number of the prisoner too. \nCould come in handy!");
+                gimnyText.SetText("Thanks Chef! By the way, make sure to memorize the id number of the prisoner. \nIt could come in handy!");
                 cardScreen.enabled = false;
                 checkedScreen.enabled = true;
                 textHolder.SetActive(true);
