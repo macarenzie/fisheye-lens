@@ -94,14 +94,9 @@ public class Cook : MonoBehaviour
         // Iterate through all objects
         foreach(Drag sprite in manager.spriteInfoList)
         {
-            // Determine if the object is already in the list
-            if (sprite.spriteInfo.isCombining & sprite.spriteInfo.IsSnapping)
-            {
-                break;
-            }
 
             // Add to the list if the sprite is touching the tray and not already touching
-            else if (!sprite.spriteInfo.IsCombining && sprite.spriteInfo.IsSnapping)
+            if (!sprite.spriteInfo.IsCombining && sprite.spriteInfo.IsSnapping)
             {
                 sprite.spriteInfo.isCombining = true;
 
