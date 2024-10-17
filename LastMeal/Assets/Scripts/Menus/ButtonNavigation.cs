@@ -54,13 +54,7 @@ public class ButtonNavigation : MonoBehaviour
     /// </summary>
     public void reveal_menu()
     {
-        //if (SceneManager.GetActiveScene().name == game_scene) 
-        //{
-        //
-        //    transform.GetChild(0).gameObject.SetActive(true); // MenuBackground
-        //    transform.GetChild(1).gameObject.SetActive(true); // Settings
-        //}
-
+        // The first two children under the 
         Transform Backdrop = transform.GetChild(0);
         Transform Settings = transform.GetChild(1);
 
