@@ -27,7 +27,7 @@ public class Snap : MonoBehaviour
         {
             float currentDistance = Vector2.Distance(draggable.transform.localPosition, snapPoint.transform.localPosition);
             
-            if(closestSnappingPoint == null || ingrediantManager.AABBTransformCheck(snapPoint, draggable.spriteInfo))
+            if(closestSnappingPoint == null || currentDistance < closestDistance)
             {
                 closestSnappingPoint = snapPoint.transform;
                 closestDistance = currentDistance;
@@ -37,6 +37,12 @@ public class Snap : MonoBehaviour
         if(closestSnappingPoint != null && closestDistance <= snapRange)
         {
             draggable.transform.localPosition = closestSnappingPoint.localPosition;
+            draggable.spriteInfo.IsSnapping = true;
+        }
+
+        if(closestSnappingPoint != null && closestDistance > snapRange)
+        {
+            draggable.spriteInfo.IsSnapping = false;
         }
     }
 }

@@ -13,6 +13,7 @@ public class SpriteInfo : MonoBehaviour
     public bool isColliding = false;
     public bool isCombining = false;
     public bool isCompleting = false;
+    bool isSnapping = false;
 
     // Methods for all states
     public bool IsColliding
@@ -31,6 +32,12 @@ public class SpriteInfo : MonoBehaviour
     {
         get { return isCompleting; }
         set { isCompleting = value; }
+    }
+
+    public bool IsSnapping
+    {
+        get { return isSnapping; }
+        set { isSnapping = value; }
     }
 
     // Gets the Minimum bounds

@@ -95,15 +95,13 @@ public class Cook : MonoBehaviour
         foreach(Drag sprite in manager.spriteInfoList)
         {
             // Determine if the object is already in the list
-            if (sprite.spriteInfo.isCombining & manager.AABBCheck(sprite.spriteInfo,
-                new Vector2(spawner.transform.position.x, spawner.transform.position.y)))
+            if (sprite.spriteInfo.isCombining & sprite.spriteInfo.IsSnapping)
             {
                 break;
             }
 
             // Add to the list if the sprite is touching the tray and not already touching
-            else if (manager.AABBCheck(sprite.spriteInfo,
-                new Vector2(spawner.transform.position.x, spawner.transform.position.y)))
+            else if (!sprite.spriteInfo.IsCombining && sprite.spriteInfo.IsSnapping)
             {
                 sprite.spriteInfo.isCombining = true;
 
@@ -138,8 +136,7 @@ public class Cook : MonoBehaviour
             }
 
             // Remove the object from the list if its off the tray
-            else if (sprite.spriteInfo.IsCombining & !manager.AABBCheck(sprite.spriteInfo,
-                new Vector2(spawner.transform.position.x, spawner.transform.position.y)))
+            else if (sprite.spriteInfo.IsCombining & !sprite.spriteInfo.IsSnapping)
             {
                 sprite.spriteInfo.IsCombining = false;
 
