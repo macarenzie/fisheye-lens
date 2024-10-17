@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CompleteOrder : MonoBehaviour
 {
-    public List<SpriteInfo> IngrediantsCompleting = new List<SpriteInfo>();
+    public List<Drag> IngrediantsCompleting = new List<Drag>();
     public IngrediantManager manager;
     public GameObject deSpawner;
 
@@ -57,7 +57,7 @@ public class CompleteOrder : MonoBehaviour
                 new Vector2(deSpawner.transform.position.x, deSpawner.transform.position.y)))
             {
                 sprite.spriteInfo.isCompleting = true;
-                IngrediantsCompleting.Add(sprite.spriteInfo);
+                IngrediantsCompleting.Add(sprite);
                 break;
             }
 
@@ -68,7 +68,7 @@ public class CompleteOrder : MonoBehaviour
                 sprite.spriteInfo.isCompleting = false;
 
                 // Find the object in the ingrediants list and remove it
-                foreach (SpriteInfo ingrediant in IngrediantsCompleting)
+                foreach (Drag ingrediant in IngrediantsCompleting)
                 {
                     if (sprite == ingrediant)
                     {

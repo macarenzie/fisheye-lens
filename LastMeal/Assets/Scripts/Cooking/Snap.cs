@@ -7,9 +7,10 @@ public class Snap : MonoBehaviour
     public List<Transform> snapPoints;
     public IngrediantManager ingrediantManager;
     public float snapRange = 0.5f;
+    public float closestDistance;
 
-    // Start is called before the first frame update
-    void Start()
+    // Must use update instead of start as the objects are being updated frequently
+    void Update()
     {
         foreach(Drag dragabbles in ingrediantManager.spriteInfoList)
         {
@@ -19,16 +20,16 @@ public class Snap : MonoBehaviour
 
     private void OnDragEnded(Drag draggable)
     {
-        float closestDistance = 1;
+        closestDistance = -1;
         Transform closestSnappingPoint = null;
 
         foreach(Transform snapPoint in snapPoints)
         {
-            float currentDistance = Vector2.Distance(draggable.transform.localPosition, snapPoint.localPosition);
+            float currentDistance = Vector2.Distance(draggable.transform.localPosition, snapPoint.transform.localPosition);
             
-            if(closestSnappingPoint == null || currentDistance < closestDistance)
+            if(closestSnappingPoint == null || ingrediantManager.AABBTransformCheck(snapPoint, draggable.spriteInfo))
             {
-                closestSnappingPoint = snapPoint;
+                closestSnappingPoint = snapPoint.transform;
                 closestDistance = currentDistance;
             }
         }
