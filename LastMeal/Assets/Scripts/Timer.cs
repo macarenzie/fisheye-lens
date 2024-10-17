@@ -77,6 +77,10 @@ public class Timer : MonoBehaviour
     }
 
     #region METHODS
+    /// <summary>
+    /// Parses the time from seconds into a minute : second timer display
+    /// </summary>
+    /// <param name="timeToDisplay"></param>
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
@@ -103,7 +107,7 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// Pulls up the Success menu under GameMenus 
     /// </summary>
-    void SendOrder()
+    public void SendOrder()
     {
         timerIsRunning = false;
         timerText.text = "Order complete";
