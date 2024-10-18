@@ -10,13 +10,12 @@ using UnityEngine.SceneManagement;
 /// </summary>
 /// Author(s): Andrew Jameison
 /// 
-
 public class ButtonNavigation : MonoBehaviour
 {
     /// <summary>
     /// Should be "Main" when building, or "AndrewScene" when testing
     /// </summary>
-    private const string game_scene = "AndrewScene";
+    private const string game_scene = "Main";
 
     /// <summary>
     /// Button Event. Loads up the game
@@ -54,13 +53,12 @@ public class ButtonNavigation : MonoBehaviour
     /// </summary>
     public void reveal_menu()
     {
-        // The first two children under the 
         Transform Backdrop = transform.GetChild(0);
         Transform Settings = transform.GetChild(1);
 
         if (Backdrop != null && Settings != null && Backdrop.name == "MenuBackdrop" && Settings.name == "Settings") {
-            Backdrop.gameObject.SetActive(true);
-            Settings.gameObject.SetActive(true);
+            Backdrop.gameObject.SetActive(!Backdrop.gameObject.activeSelf);
+            Settings.gameObject.SetActive(!Settings.gameObject.activeSelf);
         }
 
         else {

@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour
 
         // hook up the buttons to their methods
         // startButton.onClick.AddListener(startTimer);
-        sendOrderButton.onClick.AddListener(SendOrder);
+        //sendOrderButton.onClick.AddListener(SendOrder);
         // resetButton.onClick.AddListener(resetTimer);
 
         // print timer on screen
