@@ -79,13 +79,13 @@ public class Receipt : MonoBehaviour
     /// </summary>
     private void ReadFileAndPopulateDict()
     {
-        string fileName = "Assets/Recipe.txt";
+        string fileName = "/Resources/Recipe.txt";
         StreamReader sr = null;
 
         try
         {
             Console.WriteLine("this happened");
-            sr = new StreamReader(fileName); //declare new SR to read this textfile
+            sr = new StreamReader(Application.dataPath + fileName); //declare new SR to read this textfile
             string line;
             while ((line = sr.ReadLine()) != null)//until we reach the end of the file
             {

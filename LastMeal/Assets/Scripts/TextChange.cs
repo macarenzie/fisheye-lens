@@ -33,14 +33,12 @@ public class TextChange : MonoBehaviour
     StreamReader reader;
 
 
-    private void Start()
-    {
-        reader = new StreamReader("Assets/Text/" + dialogue.name + ".txt");
-    }
-
-
     public void OnTextClick()
     {
+        if (textStage == 0)
+        {
+            reader = new StreamReader(Application.dataPath + "/Resources/" + dialogue.name + ".txt");
+        }
         
         textStage++;    
         if (textStage > 10)
