@@ -47,7 +47,9 @@ public class Receipt : MonoBehaviour
     private void GenerateRecipeChosen()
     {
         //choose recipe at random
-        recipeIndexNum = rng.Next(0, totalNumRecipe); //make sure the maxValue is the num of recipe 
+        //recipeIndexNum = rng.Next(0, totalNumRecipe); //make sure the maxValue is the num of recipe 
+        recipeIndexNum = 0; //make sure the maxValue is the num of recipe 
+
     }
     private void GenerateUserOrder()
     {
@@ -58,12 +60,19 @@ public class Receipt : MonoBehaviour
             tempIngredientList.Add(ingredient);
         }
         int randNum;
-        for (int i = 0; i < maxIngredientAmount; i++) { 
-            randNum = rng.Next(0, tempIngredientList.Count);
-            userOrder.Add(tempIngredientList[randNum]); //add ingredient to order
-            //delete current ingredient so its not in the list again
-            tempIngredientList.Remove(tempIngredientList[randNum]);
+
+        //sandwich, add bread as ingredient
+        if (recipeIndexNum == 0) {
+            userOrder.Add("Bread");
+            userOrder.Add("Tomato");
         }
+
+        //for (int i = 0; i < maxIngredientAmount; i++) { 
+        //    randNum = rng.Next(0, tempIngredientList.Count);
+        //    userOrder.Add(tempIngredientList[randNum]); //add ingredient to order
+        //    //delete current ingredient so its not in the list again
+        //    tempIngredientList.Remove(tempIngredientList[randNum]);
+        //}
     }
     /// <summary>
     /// Read from fileName and populate private Dictionary<string,string> recipeDict
