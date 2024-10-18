@@ -84,11 +84,11 @@ public class Cook : MonoBehaviour
     {
         if (contraTrigger)
         {
-            gimnyText.SetText("Thanks Chef, you’re a lifesaver! Your good pal Gimny will put in a good word with the other inmates. You’re gonna have a great time here man, I just know it!\n(YOU WIN||EXPERIENCE OVER)");
+            gimnyText.SetText("Thanks Chef, you're a lifesaver! Your good pal Gimny will put in a good word with the other inmates. You're gonna have a great time here man, I just know it!\n(YOU WIN||EXPERIENCE OVER)");
         }
         else if (normalTrigger)
         {
-            gimnyText.SetText("Thanks for the food Chef! Hopefully I’ll be able to get that knife somewhere else. Have a good day man…\n(YOU WIN||EXPERIENCE OVER)");
+            gimnyText.SetText("Thanks for the food Chef! Hopefully I'll be able to get that knife somewhere else. Have a good day man…\n(YOU WIN||EXPERIENCE OVER)");
         }
 
         // Iterate through all objects

@@ -35,7 +35,7 @@ public class TextChange : MonoBehaviour
 
     private void Start()
     {
-        reader = new StreamReader("Assets\\Text\\" + dialogue.name + ".txt");
+        reader = new StreamReader("Assets/Text/" + dialogue.name + ".txt");
     }
 
 
