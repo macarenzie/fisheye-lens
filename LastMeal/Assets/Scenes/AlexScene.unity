@@ -1314,11 +1314,13 @@ MonoBehaviour:
   IngrediantsCombining: []
   manager: {fileID: 618054213}
   spawner: {fileID: 180166623}
+  receipt: {fileID: 1662979341}
   gimnyText: {fileID: 453020897}
   textHolder: {fileID: 1857692505}
   isBread: 0
   isTomato: 0
   isContraband: 0
+  isSandwich: 0
 --- !u!114 &203134693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4506,6 +4508,7 @@ MonoBehaviour:
   - {fileID: 730081679822524621, guid: 00d3324689944e24e89d9ac40d7c4578, type: 3}
   - {fileID: 236272918379846498, guid: 83ca1cfca18fefc4e86979199f6108c1, type: 3}
   - {fileID: 2435229700410165836, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
+  - {fileID: 2096434672378634163, guid: 8525d67315d2c2642834c04880f1153c, type: 3}
   manager: {fileID: 618054213}
   cooker: {fileID: 203134692}
   complete: {fileID: 1908387777}

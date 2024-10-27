@@ -10,6 +10,7 @@ public class Cook : MonoBehaviour
     public List<Drag> IngrediantsCombining = new List<Drag>();
     public IngrediantManager manager;
     public GameObject spawner;
+    public Receipt receipt;
 
     //Triggers for finished dialogue
     bool contraTrigger = false;
@@ -19,8 +20,6 @@ public class Cook : MonoBehaviour
     [SerializeField]
     private GameObject textHolder;
 
-
-
     // Very poorly implemented cooking bools for recipes
     [SerializeField]
     bool isBread = false;
@@ -28,6 +27,8 @@ public class Cook : MonoBehaviour
     bool isTomato = false;
     [SerializeField]
     bool isContraband = false;
+    [SerializeField]
+    bool isSandwich = false;
 
     public bool IsBread
     {
@@ -43,6 +44,25 @@ public class Cook : MonoBehaviour
     {
         set { isContraband = value; }
     }
+
+    public bool IsSandwhich
+    {
+        set { isSandwich = value; }
+    }
+
+
+    /// <summary>
+    /// Sets the recipe based on input from the recipt
+    /// </summary>
+    public void RandomRecipe()
+    {
+        foreach(string ingrediant in receipt.userOrder)
+        {
+
+        }
+        
+    }
+
 
     // Spawns food depending on the items that are
     // Currently works off a boolean system
@@ -75,6 +95,18 @@ public class Cook : MonoBehaviour
                 spawner.transform.position.y,
                 -1));            
             normalTrigger = true;
+            textHolder.SetActive(true);
+        }
+
+        // Add contraband to a completed order
+        else if(isSandwich & isContraband)
+        {
+            manager.ClearList();
+            manager.AddSprite(RecipeList[1], new Vector3(spawner.transform.position.x,
+                spawner.transform.position.y,
+                -1));
+            normalTrigger = false;
+            contraTrigger = true;
             textHolder.SetActive(true);
         }
     }   
@@ -126,6 +158,14 @@ public class Cook : MonoBehaviour
                     isContraband = true;
                     Debug.Log(isContraband);
                 }
+
+                // Sandwich bool
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    manager.IngrediantList[3].GetComponent<SpriteRenderer>().sprite)
+                {
+                    isSandwich = true;
+                    Debug.Log(isSandwich);
+                }
                 IngrediantsCombining.Add(sprite);
                 break;
             }
@@ -143,8 +183,6 @@ public class Cook : MonoBehaviour
                         // Compares sprites to determine bool status
                         // Could potentially use this in click method
                         // Instead of bools
-                        //ERROR: The check can be spotty in times of quickness
-                        //need more playtesting for why this is
                         if (sprite.GetComponent<SpriteRenderer>().sprite ==
                             manager.IngrediantList[0].GetComponent<SpriteRenderer>().sprite)
                         {
@@ -161,6 +199,12 @@ public class Cook : MonoBehaviour
                             manager.IngrediantList[2].GetComponent<SpriteRenderer>().sprite)
                         {
                             isContraband = false;
+                        }
+
+                        else if(sprite.GetComponent<SpriteRenderer>().sprite ==
+                            manager.IngrediantList[3].GetComponent<SpriteRenderer>().sprite)
+                        {
+                            IsSandwhich = false;
                         }
                         IngrediantsCombining.Remove(ingrediant);
                         break;
