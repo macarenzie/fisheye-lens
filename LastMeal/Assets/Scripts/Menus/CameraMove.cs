@@ -43,6 +43,18 @@ public class CameraMove : MonoBehaviour
     }
 
     /// <summary>
+    /// Forcibly moves the camera back to the counter for the end of the order
+    /// </summary>
+    public void OrderComplete()
+    {
+        timer.ResetTimer();
+
+        isAtCounter = true;
+
+        StartCoroutine(lerp_value(transform.position, counterPos));
+    }
+
+    /// <summary>
     /// Handles the movement of parented camera
     /// </summary>
     /// <param name="input"></param>
@@ -58,7 +70,7 @@ public class CameraMove : MonoBehaviour
                 //orderCan.enabled = false;
                 //receiptCan.enabled = false;
 
-                timer.ShowTimer(true);
+                //timer.ShowTimer(true);
             }
 
             else {
@@ -70,7 +82,7 @@ public class CameraMove : MonoBehaviour
                     receiptCan.enabled = true;
                 }
 
-                timer.ShowTimer(false);
+                //timer.ShowTimer(false);
             }
 
             StartCoroutine(co);

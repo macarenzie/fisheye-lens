@@ -8,14 +8,14 @@ public class CompleteOrder : MonoBehaviour
     public IngrediantManager manager;
     public GameObject deSpawner;
 
-    [SerializeField] Timer timer;
+    [SerializeField] CameraMove cameraMove;
 
     public void Finish()
     {
         // Temporary untl we decide what to do with this
         if(IngrediantsCompleting.Count == 1)
         {
-            timer.SendOrder();
+            cameraMove.OrderComplete();
 
             // For now just call the clear function
             manager.ClearList();

@@ -5,6 +5,18 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 
+public enum MenuNav
+{
+    PlayGame,
+    
+    Settings,
+    Controls,
+    Instructions,
+
+    Success,
+    Failure
+}
+
 /// <summary>
 /// Transitions between menus and scenes using events, most connected to button events
 /// </summary>
@@ -15,7 +27,132 @@ public class ButtonNavigation : MonoBehaviour
     /// <summary>
     /// Should be "Main" when building, or "AndrewScene" when testing
     /// </summary>
-    private const string game_scene = "Main";
+    private const string game_scene = "AndrewScene";
+
+    private MenuNav menuNav = MenuNav.PlayGame;
+
+    [SerializeField] private Timer timer;
+
+    #region BUTTON_EVENTS
+    // A key-press event for entering the game menus
+    public void KeyPause(InputAction.CallbackContext value)
+    {
+        if (value.performed && menuNav == MenuNav.PlayGame)
+        {
+            OpenMenu(MenuNav.Settings);
+        }
+    }
+
+    // Button Events for menu navigation
+    public void ResumeGame()
+    {
+        OpenMenu(MenuNav.PlayGame); 
+    }
+
+    public void OpenSettings()
+    {
+        OpenMenu(MenuNav.Settings);
+    }
+
+    public void OpenSuccess()
+    {
+        OpenMenu(MenuNav.Success);
+    }
+
+    public void OpenFailure()
+    {
+        OpenMenu(MenuNav.Failure);
+    }
+
+    public void OpenControls()
+    {
+        OpenMenu(MenuNav.Controls);
+    }
+
+    public void OpenInstructions() 
+    {
+        OpenMenu(MenuNav.Instructions);
+    }
+    #endregion
+
+    /// <summary>
+    /// Called by button events to be open a specific menu, prevents any lingering menus from overlapping
+    /// </summary>
+    /// <param name="value"></param>
+    private void OpenMenu(MenuNav value)
+    {
+        if (menuNav == value)
+        {
+            Debug.Log("ButtonNavigation.cs: Tried to move to already active menu.");
+            return;
+        }
+
+        // Where did we come from: what to turn off...
+        switch(menuNav)
+        {
+            case MenuNav.PlayGame:
+                timer.PauseTimer();
+                break;
+
+            case MenuNav.Settings:
+                ActivateMenu(false, transform.GetChild(0), "Settings");
+                break;
+
+            case MenuNav.Success:
+                ActivateMenu(false, transform.GetChild(1), "Success");
+                break;
+
+            case MenuNav.Failure:
+                ActivateMenu(false, transform.GetChild(2), "Failure");
+                break;
+
+            case MenuNav.Controls:
+                ActivateMenu(false, transform.GetChild(3), "Controls");
+                break;
+
+            case MenuNav.Instructions:
+                ActivateMenu(false, transform.GetChild(4), "Instructions");
+                break;
+
+            default:
+                Debug.Log("Still testing navigation tools, see FallThroughMenu instead...");
+                break;
+        }
+
+        // Where are we going: What to activate...
+        switch (value)
+        {
+            case MenuNav.PlayGame:
+                timer.PauseTimer();
+                break;
+
+            case MenuNav.Settings:
+                ActivateMenu(true, transform.GetChild(0), "Settings");
+                break;
+
+            case MenuNav.Success:
+                ActivateMenu(true, transform.GetChild(1), "Success");
+                break;
+
+            case MenuNav.Failure:
+                ActivateMenu(true, transform.GetChild(2), "Failure");
+                break;
+
+            case MenuNav.Controls:
+                ActivateMenu(true, transform.GetChild(3), "Controls");
+                break;
+
+            case MenuNav.Instructions:
+                ActivateMenu(true, transform.GetChild(4), "Instructions");
+                break;
+
+            default:
+                Debug.Log("Still testing navigation tools, see FallThroughMenu instead...");
+                break;
+        }
+
+        menuNav = value;
+    }
 
     /// <summary>
     /// Button Event. Loads up the game
@@ -41,28 +178,23 @@ public class ButtonNavigation : MonoBehaviour
     }
 
     /// <summary>
-    /// Button Event. Returns to the main menu / navigation scene
+    /// Button Event. Returns to the main menu ( navigation scene )
     /// </summary>
     public void main_menu()
     {
         SceneManager.LoadScene("Navigation");
     }
 
-    /// <summary>
-    /// Opens the pause menu during the game.
-    /// </summary>
-    public void reveal_menu()
+    private void ActivateMenu(bool activate, Transform child, string menuName)
     {
-        Transform Backdrop = transform.GetChild(0);
-        Transform Settings = transform.GetChild(1);
-
-        if (Backdrop != null && Settings != null && Backdrop.name == "MenuBackdrop" && Settings.name == "Settings") {
-            Backdrop.gameObject.SetActive(!Backdrop.gameObject.activeSelf);
-            Settings.gameObject.SetActive(!Settings.gameObject.activeSelf);
+        if(child.gameObject != null && child.name == menuName) 
+        {
+            child.gameObject.SetActive(activate);
         }
 
-        else {
-            Debug.Log("Timer.cs : Could not find Settings menu in GameMenus heirarchy");
+        else
+        {
+            Debug.Log("ButtonNavigation.cs : Could not find " + menuName + " menu in GameMenus heirarchy");
         }
     }
 

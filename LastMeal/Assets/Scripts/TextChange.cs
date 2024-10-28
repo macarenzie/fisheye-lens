@@ -33,6 +33,11 @@ public class TextChange : MonoBehaviour
     StreamReader reader;
 
 
+    /// <summary>
+    /// Used when an order is begun, calls StartTimer
+    /// </summary>
+    [SerializeField] private Timer timer;
+
     public void OnTextClick()
     {
         if (textStage == 0)
@@ -68,6 +73,8 @@ public class TextChange : MonoBehaviour
                 checkedScreen.enabled = false;
                 normalScreen.enabled = true;
                 orderPaper.enabled = true;
+
+                timer.StartTimer();
                 break;
             case 10:
                 gimnyText.SetText("");
@@ -76,6 +83,8 @@ public class TextChange : MonoBehaviour
                 {
                     reader.Close();
                 }
+
+                timer.CompleteDay();
                 break;
 
         }
