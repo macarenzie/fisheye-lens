@@ -15,22 +15,18 @@ using UnityEngine.VFX;
 public class Timer : MonoBehaviour
 {
     #region FIELDS
-    // timer logic
+    [Header("")]
+    [SerializeField] protected TMP_Text timerText;
+    [SerializeField] private GameObject menus;
     [SerializeField] protected float initialTime;
+
     private float timeRemaining;
     protected bool timerIsRunning;
+
+    /// <summary>
+    /// Whether an order is currently being worked on
+    /// </summary>
     private bool inPlay = false;
-
-    //[SerializeField] private Button sendOrderButton;
-    [SerializeField] protected TMP_Text timerText;
-    //[SerializeField] private Canvas cookCan;
-
-    [SerializeField] private GameObject menus;
-
-
-
-    //private bool isHidden = true; // Replaced by timerIsRunning?
-    private IEnumerator co;
 
     [Header("Lerp Movement")]
     [SerializeField] private AnimationCurve lerpCurve;
@@ -39,22 +35,16 @@ public class Timer : MonoBehaviour
     [SerializeField] private Vector2 outOfView;
 
     [SerializeField] private float swapDuration;
+
+    private IEnumerator co;
     #endregion
 
     void Start()
     {
-        // set up timer
         timerIsRunning = false;
         timeRemaining = initialTime;
 
-        // hook up the buttons to their methods
-        // startButton.onClick.AddListener(startTimer);
-        // sendOrderButton.onClick.AddListener(SendOrder);
-        // resetButton.onClick.AddListener(resetTimer);
-
-        // print timer on screen
         ConvertTimeValue(initialTime);
-        //timerText.gameObject.SetActive(false); // timer hidden until started
     }
 
     void Update()
@@ -64,9 +54,7 @@ public class Timer : MonoBehaviour
         {    
             // determine if the timer ran out
             if (timeRemaining <= 0)
-            {
-                Debug.Log("Order failed");
-                
+            {                
                 timeRemaining = 0;
 
                 OrderIncomplete();
@@ -83,7 +71,6 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void StartTimer()
     {
-        Debug.Log("Timer Started");
         timerIsRunning = true;
         inPlay = true;
         MoveTimer();
@@ -106,7 +93,6 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void ResetTimer()
     {
-        Debug.Log("Timer Ended");
         timeRemaining = initialTime;
 
         ConvertTimeValue(timeRemaining);
@@ -167,24 +153,9 @@ public class Timer : MonoBehaviour
     {
         ResetTimer();
 
-        Debug.Log("Order complete");
-
         menus.GetComponent<ButtonNavigation>().OpenSuccess();
-        //
-        //// TODO: disable the ability to access the pause menu
-        //
-        //Transform Backdrop = menus.transform.GetChild(0);
-        //Transform WinState = menus.transform.GetChild(2);
-        //
-        //if (Backdrop != null && WinState != null && Backdrop.name == "MenuBackdrop" && WinState.name == "Success") {
-        //    Backdrop.gameObject.SetActive(true);
-        //    WinState.gameObject.SetActive(true);
-        //}
-        //
-        //else {
-        //    Debug.Log("Timer.cs : Could not find Success menu in GameMenus heirarchy");
-        //}
-
+        
+        // TODO: disable the ability to access the pause menu
     }
 
     /// <summary>
@@ -193,23 +164,9 @@ public class Timer : MonoBehaviour
     private void OrderIncomplete()
     {
         // TODO: disable the ability to access the pause menu
+        ResetTimer();
 
         menus.GetComponent<ButtonNavigation>().OpenFailure();
-
-        //timerIsRunning = false;
-        //
-        //// Looks for two children within the GameMenus object to activate
-        //Transform Backdrop = menus.transform.GetChild(0);
-        //Transform FailState = menus.transform.GetChild(3);
-        //
-        //if (Backdrop != null && FailState != null && Backdrop.name == "MenuBackdrop" && FailState.name == "Failure") {
-        //    Backdrop.gameObject.SetActive(true);
-        //    FailState.gameObject.SetActive(true);
-        //}
-        //
-        //else {
-        //    Debug.Log("Timer.cs : Could not find Failure menu in GameMenus heirarchy");
-        //}
     }
 
     /// <summary>
