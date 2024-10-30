@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// State of the visible menus during the main game loop
+/// </summary>
 public enum MenuNav
 {
     PlayGame,
@@ -17,24 +19,12 @@ public enum MenuNav
     Failure
 }
 
-// Some sort of navigation between scenes / days
-    // If the current day is not the final day, move to the next "day"
-    // if it is the final day, just pull up the success
-    // The start of the scene should look for what the current open scene is, and keep a reference of that for the end of the scne
-    // If game over, restart the current "day"
-
 /// <summary>
 /// Transitions between menus and scenes using events, most connected to button events
 /// </summary>
 /// Author(s): Andrew Jameison
-/// 
 public class ButtonNavigation : MonoBehaviour
 {
-    /// <summary>
-    /// Should be "Main" when building, or "AndrewScene" when testing
-    /// </summary>
-    private const string game_scene = "AndrewScene";
-
     private MenuNav menuNav = MenuNav.PlayGame;
 
     [SerializeField] private Timer timer;
@@ -111,7 +101,7 @@ public class ButtonNavigation : MonoBehaviour
     /// <summary>
     /// Button Event. Returns to the main menu ( navigation scene )
     /// </summary>
-    public void main_menu()
+    public void MainMenu()
     {
         // TODO: Eventually replace with SceneNav _days enum instead of 0
 
@@ -121,7 +111,7 @@ public class ButtonNavigation : MonoBehaviour
     /// <summary>
     /// Button Event. Exits the application
     /// </summary>
-    public void quit_game()
+    public void QuitGame()
     {
         // TODO: Save Player data to file for persistent gameplay
 

@@ -49,21 +49,21 @@ public class CameraMove : MonoBehaviour
 
         isAtCounter = true;
 
-        StartCoroutine(lerp_value(transform.position, counterPos));
+        StartCoroutine(LerpValue(transform.position, counterPos));
     }
 
     /// <summary>
     /// Handles the movement of parented camera
     /// </summary>
     /// <param name="input"></param>
-    public void swap_view(InputAction.CallbackContext input)
+    public void SwapView(InputAction.CallbackContext input)
     {
         if (input.performed) {
             Debug.Log(receiptAppeared);
             if (co != null) { StopCoroutine(co); }
 
             if (isAtCounter) {
-                co = lerp_value(transform.position, kitchenPos);
+                co = LerpValue(transform.position, kitchenPos);
                 cookCan.enabled = true;
                 //orderCan.enabled = false;
                 //receiptCan.enabled = false;
@@ -72,7 +72,7 @@ public class CameraMove : MonoBehaviour
             }
 
             else {
-                co = lerp_value(transform.position, counterPos);
+                co = LerpValue(transform.position, counterPos);
                 //cookCan.enabled = false;
                 orderCan.enabled = true;
                 if (receiptAppeared)
@@ -95,7 +95,7 @@ public class CameraMove : MonoBehaviour
     /// <param name="start"></param>
     /// <param name="end"></param>
     /// <returns></returns>
-    IEnumerator lerp_value(Vector2 start, Vector2 end) {
+    IEnumerator LerpValue(Vector2 start, Vector2 end) {
         float timeElapsed = 0;
 
         while (timeElapsed < swapDuration) {

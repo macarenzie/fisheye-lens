@@ -6,9 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// A Singleton scene manager that persists between scenes, and remembers saved data
 /// </summary>
-/// 
-/// Author: Andrew Jameison
-
+/// Author(s): Andrew Jameison
 public class SceneNav : MonoBehaviour
 {
     private static SceneNav _instance;
@@ -37,7 +35,7 @@ public class SceneNav : MonoBehaviour
     private Day[] _days =
     {
         new() { sceneName = "Navigation"},
-        new() { sceneName = "AndrewScene"},
+        new() { sceneName = "Main"},
         new() { sceneName = "SalScene"}
     };
 

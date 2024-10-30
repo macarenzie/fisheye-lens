@@ -10,8 +10,8 @@ using UnityEngine.VFX;
 /// Script: Timer
 /// Purpose: handles the logic behind the countdown timer for the 
 ///          cooking portion of the game
-/// Author(s): McKenzie Lam, Andrew Jameison
 /// </summary>
+/// Author(s): McKenzie Lam, Andrew Jameison
 public class Timer : MonoBehaviour
 {
     #region FIELDS
@@ -112,12 +112,12 @@ public class Timer : MonoBehaviour
 
         if (timerIsRunning)
         {
-            co = lerp_value(transform.localPosition, inView);
+            co = LerpValue(transform.localPosition, inView);
         }
 
         else
         {
-            co = lerp_value(transform.localPosition, outOfView);
+            co = LerpValue(transform.localPosition, outOfView);
         }
 
         StartCoroutine(co);
@@ -129,7 +129,7 @@ public class Timer : MonoBehaviour
     /// <param name="start"></param>
     /// <param name="end"></param>
     /// <returns></returns>
-    IEnumerator lerp_value(Vector2 start, Vector2 end)
+    IEnumerator LerpValue(Vector2 start, Vector2 end)
     {
         float timeElapsed = 0;
 
