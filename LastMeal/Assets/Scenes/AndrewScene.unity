@@ -1446,6 +1446,7 @@ MonoBehaviour:
   manager: {fileID: 1329690404}
   deSpawner: {fileID: 332385337}
   cameraMove: {fileID: 1422102199}
+  timer: {fileID: 689111105}
 --- !u!224 &291984431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1810,7 +1811,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1249249779}
         m_TargetAssemblyTypeName: ButtonNavigation, Assembly-CSharp
-        m_MethodName: play_game
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2001,11 +2002,13 @@ MonoBehaviour:
   IngrediantsCombining: []
   manager: {fileID: 1329690404}
   spawner: {fileID: 568368956}
+  receipt: {fileID: 0}
   gimnyText: {fileID: 187177183}
   textHolder: {fileID: 808797739}
   isBread: 0
   isTomato: 0
   isContraband: 0
+  isSandwich: 0
 --- !u!114 &352920268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2561,7 +2564,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1249249779}
         m_TargetAssemblyTypeName: ButtonNavigation, Assembly-CSharp
-        m_MethodName: play_game
+        m_MethodName: main_menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3949,9 +3952,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b0ba6379841ee47a3086fa3fd4a8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTime: 30
   timerText: {fileID: 470462688}
   menus: {fileID: 1249249778}
+  initialTime: 30
   lerpCurve:
     serializedVersion: 2
     m_Curve:
@@ -9891,6 +9894,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657957321}
   m_CullTransparentMesh: 1
+--- !u!1 &1665047907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1665047909}
+  - component: {fileID: 1665047908}
+  m_Layer: 0
+  m_Name: SceneNavigator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1665047908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665047907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3923458aaeb80c48afc231ff75ad168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1665047909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665047907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683132680
 GameObject:
   m_ObjectHideFlags: 0

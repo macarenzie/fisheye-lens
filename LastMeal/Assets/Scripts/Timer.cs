@@ -15,7 +15,6 @@ using UnityEngine.VFX;
 public class Timer : MonoBehaviour
 {
     #region FIELDS
-    [Header("")]
     [SerializeField] protected TMP_Text timerText;
     [SerializeField] private GameObject menus;
     [SerializeField] protected float initialTime;
@@ -26,7 +25,9 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// Whether an order is currently being worked on
     /// </summary>
-    private bool inPlay = false;
+    private bool inPlay = false; 
+
+    public bool InPlay { get { return inPlay; } }
 
     [Header("Lerp Movement")]
     [SerializeField] private AnimationCurve lerpCurve;
@@ -153,9 +154,9 @@ public class Timer : MonoBehaviour
     {
         ResetTimer();
 
-        menus.GetComponent<ButtonNavigation>().OpenSuccess();
-        
-        // TODO: disable the ability to access the pause menu
+        // menus.GetComponent<ButtonNavigation>().OpenSuccess();
+
+        SceneNav.Instance.LoadNextScene();
     }
 
     /// <summary>
@@ -163,7 +164,6 @@ public class Timer : MonoBehaviour
     /// </summary>
     private void OrderIncomplete()
     {
-        // TODO: disable the ability to access the pause menu
         ResetTimer();
 
         menus.GetComponent<ButtonNavigation>().OpenFailure();

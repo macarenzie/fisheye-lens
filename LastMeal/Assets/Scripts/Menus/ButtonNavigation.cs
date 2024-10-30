@@ -17,6 +17,12 @@ public enum MenuNav
     Failure
 }
 
+// Some sort of navigation between scenes / days
+    // If the current day is not the final day, move to the next "day"
+    // if it is the final day, just pull up the success
+    // The start of the scene should look for what the current open scene is, and keep a reference of that for the end of the scne
+    // If game over, restart the current "day"
+
 /// <summary>
 /// Transitions between menus and scenes using events, most connected to button events
 /// </summary>
@@ -33,7 +39,7 @@ public class ButtonNavigation : MonoBehaviour
 
     [SerializeField] private Timer timer;
 
-    #region BUTTON_EVENTS
+
     // A key-press event for entering the game menus
     public void KeyPause(InputAction.CallbackContext value)
     {
@@ -42,6 +48,8 @@ public class ButtonNavigation : MonoBehaviour
             OpenMenu(MenuNav.Settings);
         }
     }
+
+    #region MENU_BUTTONS
 
     // Button Events for menu navigation
     public void ResumeGame()
@@ -74,6 +82,53 @@ public class ButtonNavigation : MonoBehaviour
         OpenMenu(MenuNav.Instructions);
     }
     #endregion
+
+
+    #region SCENE_BUTTONS
+    /// <summary>
+    /// Advance to the next day
+    /// </summary>
+    public void PlayGame()
+    {
+        // TEMP: If this is the last scene, instead call success state
+
+        if (!SceneNav.Instance.LoadNextScene())
+        {
+            if (timer) { timer.ResetTimer(); }
+
+            OpenMenu(MenuNav.Success);
+        }
+    }
+
+    /// <summary>
+    /// Reloads the current day
+    /// </summary>
+    public void Restart()
+    {
+        SceneNav.Instance.RestartDay();
+    }
+
+    /// <summary>
+    /// Button Event. Returns to the main menu ( navigation scene )
+    /// </summary>
+    public void main_menu()
+    {
+        // TODO: Eventually replace with SceneNav _days enum instead of 0
+
+        SceneNav.Instance.LoadSelectedScene(0);
+    }
+
+    /// <summary>
+    /// Button Event. Exits the application
+    /// </summary>
+    public void quit_game()
+    {
+        // TODO: Save Player data to file for persistent gameplay
+
+        Application.Quit();
+    }
+    #endregion
+
 
     /// <summary>
     /// Called by button events to be open a specific menu, prevents any lingering menus from overlapping
@@ -154,37 +209,6 @@ public class ButtonNavigation : MonoBehaviour
         menuNav = value;
     }
 
-    /// <summary>
-    /// Button Event. Loads up the game
-    /// </summary>
-    public void play_game()
-    {
-        // TODO: Currently used to reset the game after fail-condition, does this cause some overhead?
-            // Perhaps change to resetting individual gameobjects, not sure...
-
-        SceneManager.LoadScene(game_scene);
-
-        prepare_game();
-    }
-
-    /// <summary>
-    /// Will be used to make any changes between scenes
-    /// </summary>
-    public void prepare_game()
-    {
-        // If you ever need some specific thing to happen when the game resets, put it into this method
-
-        // TODO: Eventually pass in saved data and what day the player is currently on 
-    }
-
-    /// <summary>
-    /// Button Event. Returns to the main menu ( navigation scene )
-    /// </summary>
-    public void main_menu()
-    {
-        SceneManager.LoadScene("Navigation");
-    }
-
     private void ActivateMenu(bool activate, Transform child, string menuName)
     {
         if(child.gameObject != null && child.name == menuName) 
@@ -196,14 +220,5 @@ public class ButtonNavigation : MonoBehaviour
         {
             Debug.Log("ButtonNavigation.cs : Could not find " + menuName + " menu in GameMenus heirarchy");
         }
-    }
-
-    /// <summary>
-    /// Button Event. Exits the application
-    /// </summary>
-    public void quit_game()
-    {
-
-        Application.Quit();
     }
 }

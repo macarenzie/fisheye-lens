@@ -82,9 +82,12 @@ public class TextChange : MonoBehaviour
                 if (reader.EndOfStream)
                 {
                     reader.Close();
-                }
+                }   
+                
 
-                timer.CompleteDay();
+                // TODO: Currently, the player can just spam through the dialogue and advance the day.
+                    // Should have some requirements to advance to next textStage
+                SceneNav.Instance.LoadNextScene();
                 break;
 
         }

@@ -32,8 +32,6 @@ public class CameraMove : MonoBehaviour
     // timer stuff, adjust later
     [SerializeField] private Timer timer;
 
-
-
     private void Update()
     {
         if (receiptCan.enabled == true)

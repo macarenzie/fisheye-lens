@@ -8,12 +8,13 @@ public class CompleteOrder : MonoBehaviour
     public IngrediantManager manager;
     public GameObject deSpawner;
 
-    [SerializeField] CameraMove cameraMove;
+    [SerializeField] private CameraMove cameraMove;
+    [SerializeField] private Timer timer;
 
     public void Finish()
     {
         // Temporary untl we decide what to do with this
-        if(IngrediantsCompleting.Count == 1)
+        if(IngrediantsCompleting.Count == 1 && timer.InPlay)
         {
             cameraMove.OrderComplete();
 
