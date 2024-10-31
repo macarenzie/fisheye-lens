@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6494825633563274349}
   - component: {fileID: 2299063242974764657}
-  - component: {fileID: 1859826552875269946}
   - component: {fileID: 2214900346142310535}
+  - component: {fileID: 1859826552875269946}
   m_Layer: 0
   m_Name: Sandwich(Contraband))
   m_TagString: Untagged
@@ -171,22 +171,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1859826552875269946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851696559843414626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f58034632b80c743a3599d5cc7b829e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ingrediant: {fileID: 1851696559843414626}
-  spriteInfo: {fileID: 2214900346142310535}
-  MousePos: {x: 0, y: 0, z: 0}
-  IsDragging: 0
 --- !u!114 &2214900346142310535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,3 +188,19 @@ MonoBehaviour:
   isColliding: 0
   isCombining: 0
   isCompleting: 0
+--- !u!114 &1859826552875269946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851696559843414626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58034632b80c743a3599d5cc7b829e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ingrediant: {fileID: 1851696559843414626}
+  spriteInfo: {fileID: 2214900346142310535}
+  MousePos: {x: 0, y: 0, z: 0}
+  IsDragging: 0

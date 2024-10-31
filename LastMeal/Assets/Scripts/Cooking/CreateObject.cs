@@ -13,6 +13,6 @@ public class CreateObject : MonoBehaviour
     public void SpawnIngrediantSprite()
     {
         manager.AddSprite(sprite, new Vector3(spawner.transform.position.x, 
-            spawner.transform.position.y - 2, spawner.transform.position.z - 1));
+            spawner.transform.position.y, spawner.transform.position.z - 1));
     }
 }
