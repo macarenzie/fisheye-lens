@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6659081041214995225}
   - component: {fileID: 1132151464649296026}
+  - component: {fileID: -6431522746474228690}
+  - component: {fileID: -8467743318961383593}
   m_Layer: 0
   m_Name: Salad
   m_TagString: Untagged
@@ -84,3 +86,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6431522746474228690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859821761933713701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58034632b80c743a3599d5cc7b829e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ingrediant: {fileID: 859821761933713701}
+  spriteInfo: {fileID: -8467743318961383593}
+  MousePos: {x: 0, y: 0, z: 0}
+  IsDragging: 0
+--- !u!114 &-8467743318961383593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859821761933713701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96666a6a145c9e7499d9302f05ed2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectSize: {x: 1, y: 1}
+  renderor: {fileID: 1132151464649296026}
+  isColliding: 0
+  isCombining: 0
+  isCompleting: 0

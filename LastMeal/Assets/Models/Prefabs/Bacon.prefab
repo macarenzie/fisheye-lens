@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1237314423131067084}
   - component: {fileID: 451419375341530485}
+  - component: {fileID: -725343245764377509}
+  - component: {fileID: 5609548918723957681}
   m_Layer: 0
   m_Name: Bacon
   m_TagString: Untagged
@@ -84,3 +86,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-725343245764377509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874923031336365458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58034632b80c743a3599d5cc7b829e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ingrediant: {fileID: 8874923031336365458}
+  spriteInfo: {fileID: 5609548918723957681}
+  MousePos: {x: 0, y: 0, z: 0}
+  IsDragging: 0
+--- !u!114 &5609548918723957681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874923031336365458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96666a6a145c9e7499d9302f05ed2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectSize: {x: 1, y: 1}
+  renderor: {fileID: 451419375341530485}
+  isColliding: 0
+  isCombining: 0
+  isCompleting: 0
