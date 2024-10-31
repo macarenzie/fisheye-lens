@@ -34,14 +34,7 @@ public class IngrediantManager : MonoBehaviour
         
         cooker.IsBread = false;
         cooker.IsTomato = false;
-        cooker.IsBacon = false;
-        cooker.IsEgg = false;
-        cooker.IsCheese = false;
-        cooker.IsLettuce = false;
-
         cooker.IsContraband = false;
-        cooker.IsSalad = false;
-        cooker.IsBacon = false;
 
         manager.spriteInfoList.Clear();
         cooker.IngrediantsCombining.Clear();

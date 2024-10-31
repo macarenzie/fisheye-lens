@@ -3949,7 +3949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef6a8cd5e040c84380c95592a03c5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 2435229700410165836, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
+  sprite: {fileID: 0}
   manager: {fileID: 1918450647}
   spawner: {fileID: 782475046}
 --- !u!114 &705590820
@@ -3999,10 +3999,10 @@ MonoBehaviour:
       - m_Target: {fileID: 705590819}
         m_TargetAssemblyTypeName: CreateObject, Assembly-CSharp
         m_MethodName: SpawnIngrediantSprite
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2435229700410165836, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
+          m_ObjectArgumentAssemblyTypeName: Drag, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6118,7 +6118,6 @@ GameObject:
   - component: {fileID: 1105514132}
   - component: {fileID: 1105514131}
   - component: {fileID: 1105514130}
-  - component: {fileID: 1105514135}
   m_Layer: 5
   m_Name: Cook
   m_TagString: Untagged
@@ -6150,9 +6149,6 @@ MonoBehaviour:
   isBread: 0
   isLettuce: 0
   isTomato: 0
-  isBacon: 0
-  isEgg: 0
-  isCheese: 0
   isContraband: 0
   isSandwich: 0
   isSalad: 0
@@ -6272,25 +6268,6 @@ RectTransform:
   m_AnchoredPosition: {x: 230, y: 81}
   m_SizeDelta: {x: 80.59, y: 58.19}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1105514135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105514129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da6337eb237dca448fdd32ce2f94c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteInfoList: []
-  IngrediantList: []
-  manager: {fileID: 1918450647}
-  cooker: {fileID: 1105514130}
-  complete: {fileID: 2088256508}
-  Parent: {fileID: 1000780094}
-  MousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &1109256672
 GameObject:
   m_ObjectHideFlags: 0

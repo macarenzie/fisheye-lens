@@ -28,12 +28,6 @@ public class Cook : MonoBehaviour
     [SerializeField]
     bool isTomato = false;
     [SerializeField]
-    bool isBacon = false;
-    [SerializeField]
-    bool isEgg = false;
-    [SerializeField]
-    bool isCheese = false;
-    [SerializeField]
     bool isContraband = false;
     [SerializeField]
     bool isSandwich = false;
@@ -57,18 +51,6 @@ public class Cook : MonoBehaviour
     public bool IsTomato
     {
         set { isTomato = value; }
-    }
-    public bool IsBacon
-    {
-        set { isBacon = value; }
-    }
-    public bool IsEgg
-    {
-        set { isEgg = value; }
-    }
-    public bool IsCheese
-    {
-        set { isCheese = value; }
     }
 
     public bool IsContraband
@@ -179,14 +161,6 @@ public class Cook : MonoBehaviour
             normalTrigger = false;
             contraTrigger = true;
             textHolder.SetActive(true);
-        }
-
-        else
-        {
-            manager.ClearList();
-            manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
-                spawner.transform.position.y,
-                -1));
         }
     }   
 
