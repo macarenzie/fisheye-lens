@@ -8690,7 +8690,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  inView: {x: 0, y: 312}
+  inView: {x: 0, y: 258}
   outOfView: {x: 0, y: 412}
   swapDuration: 0.3
 --- !u!1001 &1612620885
