@@ -9,7 +9,7 @@ using TMPro;
 //Stuff to Add: Dialogue for receiving the right or wrong meal,
 //dialogue for getting his contraband or not, ending screen as well
 
-public class TextChange : MonoBehaviour
+public class SalChange : MonoBehaviour
 {
     //GimnyText is what dialogue is being displayed with textStage determining what
     //line is being spoken
@@ -45,27 +45,27 @@ public class TextChange : MonoBehaviour
         {
             reader = new StreamReader(Application.dataPath + "/Resources/" + dialogue.name + ".txt");
         }
-        
-        textStage++;    
-        if (textStage > 10)
+
+        textStage++;
+        if (textStage > 7)
         {
-            textStage = 10;
+            textStage = 7;
         }
         else
         {
             if (cardScreen.enabled == true)
             {
-                textStage = 4;
+                textStage = 5;
             }
             else
             {
                 gimnyText.SetText(reader.ReadLine());
             }
         }
-        
+
         switch (textStage)
         {
-            case 4:
+            case 5:
                 textHolder.SetActive(false);
                 normalScreen.enabled = false;
                 cardScreen.enabled = true;
@@ -74,22 +74,22 @@ public class TextChange : MonoBehaviour
                 checkedScreen.enabled = false;
                 normalScreen.enabled = true;
                 orderPaper.enabled = true;
-
+                textHolder.SetActive(false);
                 timer.StartTimer();
                 break;
-            case 10:
+            case 7:
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
                 if (reader.EndOfStream && hasEnded == false)
                 {
                     hasEnded = true;
                     reader.Close();
-                }   
-                
+                }
+
 
                 // TODO: Currently, the player can just spam through the dialogue and advance the day.
-                    // Should have some requirements to advance to next textStage
-                SceneNav.Instance.LoadNextScene();
+                // Should have some requirements to advance to next textStage
+                //SceneNav.Instance.LoadNextScene();
                 break;
 
         }
@@ -101,17 +101,17 @@ public class TextChange : MonoBehaviour
         {
             if (decisionButton.name == "RefuseButton")
             {
-                gimnyText.SetText("Hey Chef, I know you're just trying things out, but my card is good.");
+                gimnyText.SetText("You have got to be kidding me Chef! You dare spit in the face of Salvatore Fini?! I'll see you dead…\nThank you for playing!");
                 textHolder.SetActive(true);
             }
             else if (decisionButton.name == "ApproveButton")
             {
-                gimnyText.SetText("Thanks Chef! By the way, make sure to memorize the id number of the prisoner. \nIt could come in handy!");
+                gimnyText.SetText("Thanks for doing your job properly. Now if you'd be so kind, I would like to have a salad. Oh and throw in extra utensils, if you catch my drift…");
                 cardScreen.enabled = false;
                 checkedScreen.enabled = true;
                 textHolder.SetActive(true);
             }
         }
-        
+
     }
 }

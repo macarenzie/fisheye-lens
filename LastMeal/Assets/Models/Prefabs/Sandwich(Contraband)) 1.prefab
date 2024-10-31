@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2214900346142310535}
   - component: {fileID: 1859826552875269946}
   m_Layer: 0
-  m_Name: Sandwich(Contraband))
+  m_Name: Sandwich(Contraband)) 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cb7f15fa65700954c871137306b9354d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d509b152eb26474a8c7ae4d711ba378, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,4 +203,3 @@ MonoBehaviour:
   Ingrediant: {fileID: 1851696559843414626}
   spriteInfo: {fileID: 2214900346142310535}
   MousePos: {x: 0, y: 0, z: 0}
-  IsDragging: 0

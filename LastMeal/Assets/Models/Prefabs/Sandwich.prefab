@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6d509b152eb26474a8c7ae4d711ba378, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7815a3474e5f1a4bbf43f16ce525ec2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,8 @@ MonoBehaviour:
   rectSize: {x: 1, y: 1}
   renderor: {fileID: 3456672858827571850}
   isColliding: 0
-  wasColliding: 0
+  isCombining: 0
+  isCompleting: 0
 --- !u!114 &2096434672378634163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,3 +118,4 @@ MonoBehaviour:
   Ingrediant: {fileID: 3147287956305428284}
   spriteInfo: {fileID: 2367325949873190152}
   MousePos: {x: 0, y: 0, z: 0}
+  IsDragging: 0

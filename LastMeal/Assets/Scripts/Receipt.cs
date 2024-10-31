@@ -15,6 +15,7 @@ public class Receipt : MonoBehaviour
     private Dictionary<string, string[]> recipeDict = new Dictionary<string, string[]>(); //store recipes and specific ingredients for that recipe
     public List<string> userOrder = new List<string>(); //will store the user order, will be used to confirm whats cooked is whats asked for
     private System.Random rng = new System.Random();
+    [SerializeField] //Made serialized to allow for the salad of sal
     private int recipeIndexNum;
     private int maxIngredientAmount = 3;
     private int totalNumRecipe = 3;
@@ -48,7 +49,7 @@ public class Receipt : MonoBehaviour
     {
         //choose recipe at random
         //recipeIndexNum = rng.Next(0, totalNumRecipe); //make sure the maxValue is the num of recipe 
-        recipeIndexNum = 0; //make sure the maxValue is the num of recipe 
+        //recipeIndexNum = 0; //make sure the maxValue is the num of recipe 
 
     }
     private void GenerateUserOrder()
@@ -62,8 +63,14 @@ public class Receipt : MonoBehaviour
         int randNum;
 
         //sandwich, add bread as ingredient
-        if (recipeIndexNum == 0) {
+        if (recipeIndexNum == 0)
+        {
             userOrder.Add("Bread");
+            userOrder.Add("Tomato");
+        }
+        else if (recipeIndexNum == 1)
+        {
+            userOrder.Add("Lettuce");
             userOrder.Add("Tomato");
         }
 

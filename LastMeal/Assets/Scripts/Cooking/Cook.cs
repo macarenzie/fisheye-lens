@@ -24,15 +24,28 @@ public class Cook : MonoBehaviour
     [SerializeField]
     bool isBread = false;
     [SerializeField]
+    bool isLettuce = false;
+    [SerializeField]
     bool isTomato = false;
     [SerializeField]
     bool isContraband = false;
     [SerializeField]
     bool isSandwich = false;
+    [SerializeField]
+    bool isSalad = false;
+
+    //This bool determines (for now) if you are in the Sal or Gimny scene
+    [SerializeField]
+    bool isSal = false;
 
     public bool IsBread
     {
         set { isBread = value; }
+    }
+
+    public bool IsLettuce
+    {
+        set { isLettuce = value; }
     }
 
     public bool IsTomato
@@ -48,6 +61,11 @@ public class Cook : MonoBehaviour
     public bool IsSandwhich
     {
         set { isSandwich = value; }
+    }
+
+    public bool IsSalad
+    {
+        set { isSalad = value; }
     }
 
 
@@ -84,7 +102,19 @@ public class Cook : MonoBehaviour
             contraTrigger = true;
             textHolder.SetActive(true);
         }
-        
+
+        else if (isLettuce & isTomato & isContraband)
+        {
+            // Right now clear the table to prevent errors,
+            // Refer to complete order code for how to delete specific items
+            manager.ClearList();
+            manager.AddSprite(RecipeList[3], new Vector3(spawner.transform.position.x,
+                spawner.transform.position.y,
+                -1));
+            contraTrigger = true;
+            textHolder.SetActive(true);
+        }
+
         // Contraband sandwich
         else if(isBread & isTomato)
         {
@@ -94,6 +124,18 @@ public class Cook : MonoBehaviour
             manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));            
+            normalTrigger = true;
+            textHolder.SetActive(true);
+        }
+
+        else if (isLettuce & isTomato)
+        {
+            // Right now clear the table to prevent errors,
+            // Refer to complete order code for how to delete specific items
+            manager.ClearList();
+            manager.AddSprite(RecipeList[2], new Vector3(spawner.transform.position.x,
+                spawner.transform.position.y,
+                -1));
             normalTrigger = true;
             textHolder.SetActive(true);
         }
@@ -109,6 +151,17 @@ public class Cook : MonoBehaviour
             contraTrigger = true;
             textHolder.SetActive(true);
         }
+
+        else if (isSalad & isContraband)
+        {
+            manager.ClearList();
+            manager.AddSprite(RecipeList[3], new Vector3(spawner.transform.position.x,
+                spawner.transform.position.y,
+                -1));
+            normalTrigger = false;
+            contraTrigger = true;
+            textHolder.SetActive(true);
+        }
     }   
 
     // Always check to see if there are objects in the combine list
@@ -116,11 +169,27 @@ public class Cook : MonoBehaviour
     {
         if (contraTrigger)
         {
-            gimnyText.SetText("Thanks Chef, you're a lifesaver! Your good pal Gimny will put in a good word with the other inmates. You're gonna have a great time here man, I just know it!\n(YOU WIN||EXPERIENCE OVER)");
+            if (isSal == false)
+            {
+                gimnyText.SetText("Thanks Chef, you're a lifesaver! Your good pal Gimny will put in a good word with the other inmates. You're gonna have a great time here man, I just know it!\n(YOU WIN||NEXT CUSTOMER)");
+            }
+            else
+            {
+                gimnyText.SetText("Now THAT is a salad, you've got a gift kid! Listen, anyone messes with you and you tell me, okay? I'll see you around kid, let Gimny know I said \"Salutations\".\nThank you for playing!");
+            }
+
         }
         else if (normalTrigger)
         {
-            gimnyText.SetText("Thanks for the food Chef! Hopefully I'll be able to get that knife somewhere else. Have a good day man…\n(YOU WIN||EXPERIENCE OVER)");
+            if (isSal == false)
+            {
+                gimnyText.SetText("Thanks for the food Chef! Hopefully I'll be able to get that knife somewhere else. Have a good day man…\n(YOU WIN||NEXT CUSTOMER)");
+            }
+            else
+            {
+                gimnyText.SetText("You either can't catch hints, are stupid, or are really stupid. I got my eye on you Chef…\nThank you for playing!");
+            }
+            
         }
 
         // Iterate through all objects
@@ -165,6 +234,20 @@ public class Cook : MonoBehaviour
                 {
                     isSandwich = true;
                     Debug.Log(isSandwich);
+                }
+
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    manager.IngrediantList[4].GetComponent<SpriteRenderer>().sprite)
+                {
+                    isLettuce = true;
+                    Debug.Log(isLettuce);
+                }
+
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    manager.IngrediantList[5].GetComponent<SpriteRenderer>().sprite)
+                {
+                    isSalad = true;
+                    Debug.Log(isSalad);
                 }
                 IngrediantsCombining.Add(sprite);
                 break;
