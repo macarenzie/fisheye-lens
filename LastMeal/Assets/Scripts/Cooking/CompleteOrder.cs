@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,14 +14,21 @@ public class CompleteOrder : MonoBehaviour
     public List<Drag> IngrediantsCompleting = new List<Drag>();
     public IngrediantManager manager;
     public GameObject deSpawner;
+    public Cook cookScript;
+    public Receipt userOrder;
+
 
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private Timer timer;
+    
+    public bool validCookedMeal;
+
 
     public void Finish()
     {
-        // Temporary untl we decide what to do with this
-        if(IngrediantsCompleting.Count == 1 && timer.InPlay)
+        CrossCheck();
+
+        if (IngrediantsCompleting.Count == 1 && validCookedMeal && timer.InPlay)
         {
             cameraMove.OrderComplete();
             orderComplete = true;
@@ -28,28 +36,67 @@ public class CompleteOrder : MonoBehaviour
             // For now just call the clear function
             manager.ClearList();
         }
-        
-        //// Go through all completed orders and destory them
-        //if (IngrediantsCompleting.Count == 1)
-        //{
-        //    foreach (SpriteInfo finish in IngrediantsCompleting)
-        //    {
-        //        // Remove those objects from the normal ingrediants list
-        //        foreach (SpriteInfo ingrediant in manager.spriteInfoList)
-        //        {
-        //            if (finish == ingrediant)
-        //            {
-        //                manager.spriteInfoList.Remove(ingrediant);
-        //                break;
-        //            }
-        //        }
-        //        GameObject temp = finish.gameObject;
-        //        IngrediantsCompleting.Remove(finish);
-        //        Destroy(temp);
-        //    }
-        //    IngrediantsCompleting.Clear();
-        //}
+        Debug.Log("ValidCookedMeal = " + validCookedMeal);
+
     }
+    void CrossCheck()
+    {
+
+        foreach (string order in userOrder.userOrder)
+        {
+            Debug.Log("UserOrder" + order);
+        }
+
+
+        //int userOrderCount = userOrder.userOrder.Count;
+        //int cookedCount = cookScript.dictIngredientCooked.Count;
+        //validCookedMeal = true;
+        //int validCount = 0;
+
+        ////for (int i = 0; i < cookedCount; i++) {
+        ////    if (cookScript.dictIngredientCooked[i]Va == userOrder.userOrder[i]) {
+        ////}
+        //for (int i = 0; i < cookedCount; i++)
+        //{
+        //    if(cookScript.dictIngredientCooked.ElementAt(i).Value == true)
+        //    {
+        //        validCount++;
+        //    }
+        //}
+        //if (validCount != userOrderCount)
+        //{
+        //    validCookedMeal = false;
+        //}
+
+        //foreach(string item in userOrder.userOrder)
+        //{
+        //    bool returnValue = true;
+        //    returnValue = cookScript.dictIngredientCooked.TryGetValue(item, out returnValue);
+        //    if(returnValue == false)
+        //    {
+        //        validCookedMeal = false;
+        //    }
+        //}
+        int userOrderCount = userOrder.userOrder.Count;
+        validCookedMeal = true;
+
+
+        // Check if all items in userOrder are cooked
+        foreach (string item in userOrder.userOrder)
+        {
+            bool isCooked;
+            if (!cookScript.dictIngredientCooked.TryGetValue(item, out isCooked) || !isCooked)
+            {
+                validCookedMeal = false;
+                break;
+            }
+        }
+
+
+        Console.WriteLine(validCookedMeal);
+        Debug.Log("Valid" + validCookedMeal);
+    }
+
 
     // Always check to see if there are objects in the combine list
     void Update()

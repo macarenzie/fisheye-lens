@@ -18,7 +18,7 @@ public class Receipt : MonoBehaviour
     [SerializeField] //Made serialized to allow for the salad of sal
     private int recipeIndexNum;
     private int maxIngredientAmount = 3;
-    private int totalNumRecipe = 3;
+    private int totalNumRecipe = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +48,7 @@ public class Receipt : MonoBehaviour
     private void GenerateRecipeChosen()
     {
         //choose recipe at random
-        //recipeIndexNum = rng.Next(0, totalNumRecipe); //make sure the maxValue is the num of recipe 
+        recipeIndexNum = rng.Next(0, totalNumRecipe); //make sure the maxValue is the num of recipe 
         //recipeIndexNum = 0; //make sure the maxValue is the num of recipe 
 
     }
@@ -61,25 +61,21 @@ public class Receipt : MonoBehaviour
             tempIngredientList.Add(ingredient);
         }
         int randNum;
-
+        int tempMaxIngredient = maxIngredientAmount;
         //sandwich, add bread as ingredient
         if (recipeIndexNum == 0)
         {
             userOrder.Add("Bread");
-            userOrder.Add("Tomato");
-        }
-        else if (recipeIndexNum == 1)
-        {
-            userOrder.Add("Lettuce");
-            userOrder.Add("Tomato");
+            tempMaxIngredient -= 1;
         }
 
-        //for (int i = 0; i < maxIngredientAmount; i++) { 
-        //    randNum = rng.Next(0, tempIngredientList.Count);
-        //    userOrder.Add(tempIngredientList[randNum]); //add ingredient to order
-        //    //delete current ingredient so its not in the list again
-        //    tempIngredientList.Remove(tempIngredientList[randNum]);
-        //}
+        for (int i = 0; i < tempMaxIngredient; i++)
+        {
+            randNum = rng.Next(0, tempIngredientList.Count);
+            userOrder.Add(tempIngredientList[randNum]); //add ingredient to order
+            //delete current ingredient so its not in the list again
+            tempIngredientList.Remove(tempIngredientList[randNum]);
+        }
     }
     /// <summary>
     /// Read from fileName and populate private Dictionary<string,string> recipeDict
@@ -121,6 +117,8 @@ public class Receipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
+
+

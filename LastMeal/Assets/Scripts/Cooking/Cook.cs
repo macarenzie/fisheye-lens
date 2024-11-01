@@ -11,6 +11,10 @@ public class Cook : MonoBehaviour
     public IngrediantManager manager;
     public GameObject spawner;
     public Receipt receipt;
+    [SerializeField]
+    public AssetList allSprites;
+    public Dictionary<string, bool> dictIngredientCooked = new Dictionary<string, bool>();
+
 
     //Triggers for finished dialogue
     bool contraTrigger = false;
@@ -21,18 +25,17 @@ public class Cook : MonoBehaviour
     private GameObject textHolder;
 
     // Very poorly implemented cooking bools for recipes
-    [SerializeField]
-    bool isBread = false;
-    [SerializeField]
-    bool isLettuce = false;
-    [SerializeField]
-    bool isTomato = false;
-    [SerializeField]
-    bool isContraband = false;
-    [SerializeField]
-    bool isSandwich = false;
-    [SerializeField]
-    bool isSalad = false;
+    public bool isBread = false;
+    public bool isLettuce = false;
+    public bool isTomato = false;
+    public bool isBacon = false;
+    public bool isEgg = false;
+    public bool isCheese = false;
+    public bool isContraband = false;
+    public bool isSandwich = false;
+    public bool isSalad = false;
+    public bool isSandwichContra = false;
+    public bool isSaladContra = false;
 
     //This bool determines (for now) if you are in the Sal or Gimny scene
     [SerializeField]
@@ -52,13 +55,25 @@ public class Cook : MonoBehaviour
     {
         set { isTomato = value; }
     }
+    public bool IsBacon
+    {
+        set { isBacon = value; }
+    }
+    public bool IsEgg
+    {
+        set { isEgg = value; }
+    }
+    public bool IsCheese
+    {
+        set { isCheese = value; }
+    }
 
     public bool IsContraband
     {
         set { isContraband = value; }
     }
 
-    public bool IsSandwhich
+    public bool IsSandwich
     {
         set { isSandwich = value; }
     }
@@ -68,19 +83,15 @@ public class Cook : MonoBehaviour
         set { isSalad = value; }
     }
 
-
-    /// <summary>
-    /// Sets the recipe based on input from the recipt
-    /// </summary>
-    public void RandomRecipe()
+    public bool IsSandwichContra
     {
-        foreach(string ingrediant in receipt.userOrder)
-        {
-
-        }
-        
+        set { isSandwichContra = value; }
     }
 
+    public bool IsSaladContra
+    {
+        set { isSaladContra = value; }
+    }
 
     // Spawns food depending on the items that are
     // Currently works off a boolean system
@@ -88,48 +99,91 @@ public class Cook : MonoBehaviour
     //
     // ERROR: There are sometimes errors when clearing the lists, reference values no longer existing is the problem
     // This could be a componding problem
+    public void ConfirmIngredients()
+    {
+        dictIngredientCooked.Clear();
+        dictIngredientCooked.Add("Bread", this.isBread);
+        Debug.Log("Bread Added:" + this.isBread);
+
+        dictIngredientCooked.Add("Tomato", this.isTomato);
+        Debug.Log("Tomato Added:" + this.isTomato);
+
+        dictIngredientCooked.Add("Egg", this.isEgg);
+        Debug.Log("Egg Added:" + this.isEgg);
+
+        dictIngredientCooked.Add("Cheese", this.isCheese);
+        Debug.Log("Cheese Added:" + this.isCheese);
+
+        dictIngredientCooked.Add("Lettuce", this.isLettuce);
+        Debug.Log("Lettuce Added:" + this.isLettuce);
+
+        dictIngredientCooked.Add("Bacon", this.isBacon);
+        Debug.Log("Bacon Added:" + this.isBacon);
+
+    }
     public void SpawnRecipeSprite()
     {
-        //Sandwich
-        if (isBread & isTomato & isContraband)
+        
+        if (isSandwich && isContraband)
         {
-            // Right now clear the table to prevent errors,
-            // Refer to complete order code for how to delete specific items
+            ConfirmIngredients();
+
             manager.ClearList();
             manager.AddSprite(RecipeList[1], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
-                -1));            
+                -1));
+            normalTrigger = false;
             contraTrigger = true;
             textHolder.SetActive(true);
         }
 
-        else if (isLettuce & isTomato & isContraband)
+        else if ((isSalad || (isCheese | isEgg | isLettuce | isTomato | isBacon)) && isContraband) 
         {
+            ConfirmIngredients();
+
+            manager.ClearList();
+            manager.AddSprite(RecipeList[3], new Vector3(spawner.transform.position.x,
+                spawner.transform.position.y,
+                -1));
+            normalTrigger = false;
+            contraTrigger = true;
+            textHolder.SetActive(true);
+        }
+        //Sandwich
+        else if (isBread & !isContraband & (isCheese | isEgg | isLettuce | isTomato | isBacon))
+        {
+            ConfirmIngredients();
+
             // Right now clear the table to prevent errors,
             // Refer to complete order code for how to delete specific items
             manager.ClearList();
-            manager.AddSprite(RecipeList[3], new Vector3(spawner.transform.position.x,
+            manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));
             contraTrigger = true;
             textHolder.SetActive(true);
         }
 
-        // Contraband sandwich
-        else if(isBread & isTomato)
+        //Sandwich w/ Contra
+        else if (isBread & isContraband)
         {
+            ConfirmIngredients();
+
             // Right now clear the table to prevent errors,
             // Refer to complete order code for how to delete specific items
             manager.ClearList();
-            manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
+            manager.AddSprite(RecipeList[1], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
-                -1));            
-            normalTrigger = true;
+                -1));
+            contraTrigger = true;
             textHolder.SetActive(true);
         }
 
-        else if (isLettuce & isTomato)
+        // Salad
+        else if (!isSaladContra && !isSandwichContra && !isSandwich && !isBread && !isContraband && (isCheese | isEgg | isLettuce | isTomato))
         {
+            ConfirmIngredients();
+
             // Right now clear the table to prevent errors,
             // Refer to complete order code for how to delete specific items
             manager.ClearList();
@@ -140,29 +194,31 @@ public class Cook : MonoBehaviour
             textHolder.SetActive(true);
         }
 
-        // Add contraband to a completed order
-        else if(isSandwich & isContraband)
+        //Salad w/ Contra
+        else if (isSalad && isContraband && !isSandwich && !isBread)
         {
-            manager.ClearList();
-            manager.AddSprite(RecipeList[1], new Vector3(spawner.transform.position.x,
-                spawner.transform.position.y,
-                -1));
-            normalTrigger = false;
-            contraTrigger = true;
-            textHolder.SetActive(true);
-        }
+            ConfirmIngredients();
 
-        else if (isSalad & isContraband)
-        {
+            // Right now clear the table to prevent errors,
+            // Refer to complete order code for how to delete specific items
             manager.ClearList();
             manager.AddSprite(RecipeList[3], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));
-            normalTrigger = false;
-            contraTrigger = true;
+            normalTrigger = true;
             textHolder.SetActive(true);
         }
-    }   
+
+
+
+        //else
+        //{
+        //    manager.ClearList();
+        //    manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
+        //        spawner.transform.position.y,
+        //        -1));
+        //} //test
+    }
 
     // Always check to see if there are objects in the combine list
     void Update()
@@ -189,11 +245,11 @@ public class Cook : MonoBehaviour
             {
                 gimnyText.SetText("You either can't catch hints, are stupid, or are really stupid. I got my eye on you Chef…\nThank you for playing!");
             }
-            
+
         }
 
         // Iterate through all objects
-        foreach(Drag sprite in manager.spriteInfoList)
+        foreach (Drag sprite in manager.spriteInfoList)
         {
 
             // Add to the list if the sprite is touching the tray and not already touching
@@ -205,8 +261,8 @@ public class Cook : MonoBehaviour
                 // Based off acceptable combining ingrediants from manager list
 
                 // Bread bool
-                if (sprite.GetComponent<SpriteRenderer>().sprite == 
-                    manager.IngrediantList[0].GetComponent<SpriteRenderer>().sprite)
+                if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[0])
                 {
                     isBread = true;
                     Debug.Log(isBread);
@@ -214,15 +270,44 @@ public class Cook : MonoBehaviour
 
                 // Tomato bool
                 else if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                    manager.IngrediantList[1].GetComponent<SpriteRenderer>().sprite)
+                    allSprites.listOfAllSprites[1])
                 {
                     isTomato = true;
                     Debug.Log(isTomato);
                 }
+                // Egg bool
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[2])
+                {
+                    isEgg = true;
+                    Debug.Log(isTomato);
+                }
+                // Cheese bool
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[3])
+                {
+                    isCheese = true;
+                    Debug.Log(isTomato);
+                }
+                // Bacon bool
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[4])
+                {
+                    isBacon = true;
+                    Debug.Log(isTomato);
+                }
+
+                //Lettuce
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[5])
+                {
+                    isLettuce = true;
+                    Debug.Log(isLettuce);
+                }
 
                 // Contraband bool
                 else if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                    manager.IngrediantList[2].GetComponent<SpriteRenderer>().sprite)
+                    allSprites.listOfAllSprites[6])
                 {
                     isContraband = true;
                     Debug.Log(isContraband);
@@ -230,25 +315,35 @@ public class Cook : MonoBehaviour
 
                 // Sandwich bool
                 else if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                    manager.IngrediantList[3].GetComponent<SpriteRenderer>().sprite)
+                    allSprites.listOfAllSprites[7])
                 {
                     isSandwich = true;
                     Debug.Log(isSandwich);
                 }
 
                 else if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                    manager.IngrediantList[4].GetComponent<SpriteRenderer>().sprite)
-                {
-                    isLettuce = true;
-                    Debug.Log(isLettuce);
-                }
-
-                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                    manager.IngrediantList[5].GetComponent<SpriteRenderer>().sprite)
+                    allSprites.listOfAllSprites[8])
                 {
                     isSalad = true;
                     Debug.Log(isSalad);
                 }
+
+                // Sandwich Contra
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[9])
+                {
+                    isSandwichContra = true;
+                    Debug.Log(isSandwich);
+                }
+
+                //Salad Contra
+                else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                    allSprites.listOfAllSprites[10])
+                {
+                    isSaladContra = true;
+                    Debug.Log(isSalad);
+                }
+
                 IngrediantsCombining.Add(sprite);
                 break;
             }
@@ -261,33 +356,96 @@ public class Cook : MonoBehaviour
                 // Find the object in the ingrediants list and remove it
                 foreach (Drag ingrediant in IngrediantsCombining)
                 {
-                    if(sprite == ingrediant)
+                    if (sprite == ingrediant)
                     {
                         // Compares sprites to determine bool status
                         // Could potentially use this in click method
                         // Instead of bools
+                        // Compares sprites to determine bool status
+                        // Could potentially use this in click method
+                        // Instead of bools
                         if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                            manager.IngrediantList[0].GetComponent<SpriteRenderer>().sprite)
+                            allSprites.listOfAllSprites[0])
                         {
                             isBread = false;
+                            Debug.Log(isBread);
                         }
 
+                        // Tomato bool
                         else if (sprite.GetComponent<SpriteRenderer>().sprite ==
-                            manager.IngrediantList[1].GetComponent<SpriteRenderer>().sprite)
+                            allSprites.listOfAllSprites[1])
                         {
                             isTomato = false;
+                            Debug.Log(isTomato);
+                        }
+                        // Egg bool
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[2])
+                        {
+                            isEgg = false;
+                            Debug.Log(isTomato);
+                        }
+                        // Cheese bool
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[3])
+                        {
+                            isCheese = false;
+                            Debug.Log(isTomato);
+                        }
+                        // Bacon bool
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[4])
+                        {
+                            isBacon = false;
+                            Debug.Log(isTomato);
                         }
 
-                        else if(sprite.GetComponent<SpriteRenderer>().sprite ==
-                            manager.IngrediantList[2].GetComponent<SpriteRenderer>().sprite)
+                        //Lettuce
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[5])
+                        {
+                            isLettuce = false;
+                            Debug.Log(isLettuce);
+                        }
+
+                        // Contraband bool
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[6])
                         {
                             isContraband = false;
+                            Debug.Log(isContraband);
                         }
 
-                        else if(sprite.GetComponent<SpriteRenderer>().sprite ==
-                            manager.IngrediantList[3].GetComponent<SpriteRenderer>().sprite)
+                        // Sandwich bool
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[7])
                         {
-                            IsSandwhich = false;
+                            isSandwich = false;
+                            Debug.Log(isSandwich);
+                        }
+
+                        //Salad
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[8])
+                        {
+                            isSalad = false;
+                            Debug.Log(isSalad);
+                        }
+
+                        // Sandwich Contra
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[9])
+                        {
+                            isSandwichContra = false;
+                            Debug.Log(isSandwich);
+                        }
+
+                        //Salad Contra
+                        else if (sprite.GetComponent<SpriteRenderer>().sprite ==
+                            allSprites.listOfAllSprites[10])
+                        {
+                            isSaladContra = false;
+                            Debug.Log(isSalad);
                         }
                         IngrediantsCombining.Remove(ingrediant);
                         break;
@@ -295,7 +453,10 @@ public class Cook : MonoBehaviour
                 }
                 break;
             }
-            
+
         }
     }
 }
+
+
+

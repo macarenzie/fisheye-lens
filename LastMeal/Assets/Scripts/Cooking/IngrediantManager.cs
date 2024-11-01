@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class IngrediantManager : MonoBehaviour
 {
-    public List<Drag> spriteInfoList = new List<Drag> ();
-    public List<Drag> IngrediantList = new List<Drag> ();
+    public List<Drag> spriteInfoList = new List<Drag>();
+    public List<Drag> IngrediantList = new List<Drag>();
 
     public IngrediantManager manager;
     public Cook cooker;
@@ -31,10 +31,19 @@ public class IngrediantManager : MonoBehaviour
         {
             DestroyImmediate(this.manager.spriteInfoList[i].gameObject);
         }
-        
+
         cooker.IsBread = false;
         cooker.IsTomato = false;
+        cooker.IsBacon = false;
+        cooker.IsEgg = false;
+        cooker.IsCheese = false;
+        cooker.IsLettuce = false;
+
         cooker.IsContraband = false;
+        cooker.IsSalad = false;
+        cooker.IsSandwich = false;
+        cooker.IsSaladContra = false;
+        cooker.IsSandwichContra = false;
 
         manager.spriteInfoList.Clear();
         cooker.IngrediantsCombining.Clear();
@@ -46,7 +55,7 @@ public class IngrediantManager : MonoBehaviour
     {
         MousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
            Camera.main.nearClipPlane));
-        
+
         // Loop through the list to check each sprite for collision
         // Set sprite isColliding to true when collision exists
         foreach (Drag sprite in spriteInfoList)
@@ -56,7 +65,7 @@ public class IngrediantManager : MonoBehaviour
             {
                 // Collision and stop iterating
                 sprite.spriteInfo.isColliding = true;
-                
+
                 // Reset location        
                 break;
             }
@@ -105,3 +114,5 @@ public class IngrediantManager : MonoBehaviour
         return false;
     }
 }
+
+
