@@ -1136,11 +1136,11 @@ MonoBehaviour:
   normalScreen: {fileID: 1276613881}
   cardScreen: {fileID: 16401570}
   checkedScreen: {fileID: 239572293}
+  failScreen: {fileID: 1910267110}
   orderPaper: {fileID: 0}
   textHolder: {fileID: 1287173499}
   dialogue: {fileID: 4900000, guid: 77c0ae18a003f054eaff5991442458da, type: 3}
   timer: {fileID: 0}
-  buttonNav: {fileID: 0}
 --- !u!1 &80009586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,7 +2531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Last Meal: Gimmy''s Sandwich\n\nDay: 0'
+  m_text: 'Last Meal: Sal''s Salad\n\nDay: 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4002,11 +4002,11 @@ MonoBehaviour:
   normalScreen: {fileID: 1276613881}
   cardScreen: {fileID: 16401570}
   checkedScreen: {fileID: 239572293}
+  failScreen: {fileID: 0}
   orderPaper: {fileID: 1659739091}
   textHolder: {fileID: 1287173499}
   dialogue: {fileID: 4900000, guid: 77c0ae18a003f054eaff5991442458da, type: 3}
   timer: {fileID: 1589654177}
-  buttonNav: {fileID: 0}
 --- !u!1 &748909880
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,11 +9904,11 @@ MonoBehaviour:
   normalScreen: {fileID: 1276613881}
   cardScreen: {fileID: 16401570}
   checkedScreen: {fileID: 239572293}
+  failScreen: {fileID: 0}
   orderPaper: {fileID: 0}
   textHolder: {fileID: 1287173499}
   dialogue: {fileID: 4900000, guid: 77c0ae18a003f054eaff5991442458da, type: 3}
   timer: {fileID: 1589654177}
-  buttonNav: {fileID: 2045342881}
 --- !u!1001 &1894177589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11287,8 +11287,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053490668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.915, y: 11.924, z: 31}
-  m_LocalScale: {x: 4.547741, y: 6.5405574, z: 10}
+  m_LocalPosition: {x: -45.751, y: 11.954, z: 31}
+  m_LocalScale: {x: 4.5294952, y: 6.534017, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1493575370}
