@@ -1459,6 +1459,7 @@ MonoBehaviour:
   textHolder: {fileID: 504671145}
   dialogue: {fileID: 4900000, guid: db070b4d4e4837d41bfb3b67818046ba, type: 3}
   timer: {fileID: 0}
+  buttonNav: {fileID: 0}
 --- !u!114 &310418626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,7 +1876,8 @@ MonoBehaviour:
   orderPaper: {fileID: 0}
   textHolder: {fileID: 504671145}
   dialogue: {fileID: 4900000, guid: db070b4d4e4837d41bfb3b67818046ba, type: 3}
-  timer: {fileID: 0}
+  timer: {fileID: 1020447772}
+  buttonNav: {fileID: 796674358}
 --- !u!114 &362436178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,7 +2601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &508625773
@@ -2923,7 +2925,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 796674358}
         m_TargetAssemblyTypeName: ButtonNavigation, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5044,7 +5046,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 796674358}
         m_TargetAssemblyTypeName: ButtonNavigation, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5732,10 +5734,10 @@ RectTransform:
   m_Father: {fileID: 825002756}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.63, y: 412}
-  m_SizeDelta: {x: 101.26, y: 100}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020447772
 MonoBehaviour:
@@ -5776,8 +5778,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  inView: {x: 0, y: 258}
-  outOfView: {x: 0, y: 412}
+  yShift: -100
   swapDuration: 0.3
 --- !u!1 &1020499048
 GameObject:
@@ -7476,7 +7477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349827951
@@ -10862,6 +10863,7 @@ MonoBehaviour:
   textHolder: {fileID: 504671145}
   dialogue: {fileID: 4900000, guid: db070b4d4e4837d41bfb3b67818046ba, type: 3}
   timer: {fileID: 1020447772}
+  buttonNav: {fileID: 0}
 --- !u!114 &2006521050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11191,7 +11193,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 796674358}
         m_TargetAssemblyTypeName: ButtonNavigation, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

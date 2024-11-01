@@ -32,16 +32,21 @@ public class Timer : MonoBehaviour
     [Header("Lerp Movement")]
     [SerializeField] private AnimationCurve lerpCurve;
 
-    [SerializeField] private Vector2 inView;
-    [SerializeField] private Vector2 outOfView;
+    private Vector2 inView;
+    private Vector2 outOfView;
+    [SerializeField] private float yShift = -100.0f;
 
-    [SerializeField] private float swapDuration;
+    [SerializeField] private float swapDuration = 0.3f;
 
     private IEnumerator co;
     #endregion
 
     void Start()
     {
+        outOfView = transform.localPosition;
+        inView = transform.localPosition;
+        inView.y += yShift;
+
         timerIsRunning = false;
         timeRemaining = initialTime;
 
@@ -154,9 +159,11 @@ public class Timer : MonoBehaviour
     {
         ResetTimer();
 
-        // menus.GetComponent<ButtonNavigation>().OpenSuccess();
 
-        SceneNav.Instance.LoadNextScene();
+        if ( !SceneNav.Instance.LoadNextScene() )
+        {
+            menus.GetComponent<ButtonNavigation>().OpenSuccess();
+        }
     }
 
     /// <summary>

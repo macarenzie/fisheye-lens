@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CompleteOrder : MonoBehaviour
 {
+    // Andrew Edit: just a temp bool getter for when the 
+    // Allows the player to advance to final dialogue. 
+    private static bool orderComplete = false;
+    public static bool OrderComplete { get { return orderComplete; } }
+
+
     public List<Drag> IngrediantsCompleting = new List<Drag>();
     public IngrediantManager manager;
     public GameObject deSpawner;
@@ -17,6 +23,7 @@ public class CompleteOrder : MonoBehaviour
         if(IngrediantsCompleting.Count == 1 && timer.InPlay)
         {
             cameraMove.OrderComplete();
+            orderComplete = true;
 
             // For now just call the clear function
             manager.ClearList();

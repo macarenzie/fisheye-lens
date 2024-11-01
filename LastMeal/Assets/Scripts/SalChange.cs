@@ -39,6 +39,7 @@ public class SalChange : MonoBehaviour
     /// </summary>
     [SerializeField] private Timer timer;
 
+
     public void OnTextClick()
     {
         if (textStage == 0)
@@ -47,6 +48,7 @@ public class SalChange : MonoBehaviour
         }
 
         textStage++;
+
         if (textStage > 7)
         {
             textStage = 7;
@@ -78,6 +80,14 @@ public class SalChange : MonoBehaviour
                 timer.StartTimer();
                 break;
             case 7:
+                // TODO: Currently, the player can just spam through the dialogue and advance the day.
+                // Should have some requirements to advance to next textStage
+
+                if (CompleteOrder.OrderComplete)
+                {
+                    timer.CompleteDay();
+                }
+
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
                 if (reader.EndOfStream && hasEnded == false)
@@ -85,11 +95,6 @@ public class SalChange : MonoBehaviour
                     hasEnded = true;
                     reader.Close();
                 }
-
-
-                // TODO: Currently, the player can just spam through the dialogue and advance the day.
-                // Should have some requirements to advance to next textStage
-                //SceneNav.Instance.LoadNextScene();
                 break;
 
         }

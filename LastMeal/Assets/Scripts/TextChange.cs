@@ -78,6 +78,14 @@ public class TextChange : MonoBehaviour
                 timer.StartTimer();
                 break;
             case 10:
+                
+                // TODO: Currently, the player can just spam through the dialogue and advance the day.
+                    // Should have some requirements to advance to next textStage
+                if (CompleteOrder.OrderComplete)
+                {
+                    timer.CompleteDay();
+                }
+
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
                 if (reader.EndOfStream && hasEnded == false)
@@ -86,10 +94,6 @@ public class TextChange : MonoBehaviour
                     reader.Close();
                 }   
                 
-
-                // TODO: Currently, the player can just spam through the dialogue and advance the day.
-                    // Should have some requirements to advance to next textStage
-                SceneNav.Instance.LoadNextScene();
                 break;
 
         }
