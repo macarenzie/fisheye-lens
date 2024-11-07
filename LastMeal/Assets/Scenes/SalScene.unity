@@ -1737,7 +1737,7 @@ MonoBehaviour:
   isSalad: 1
   isSandwichContra: 0
   isSaladContra: 0
-  isSal: 0
+  isSal: 1
 --- !u!114 &189205331
 MonoBehaviour:
   m_ObjectHideFlags: 0
