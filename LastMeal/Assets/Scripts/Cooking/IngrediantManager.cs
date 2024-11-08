@@ -22,6 +22,8 @@ public class IngrediantManager : MonoBehaviour
         Drag childObj = Instantiate(sprite, pos, Quaternion.identity);
         childObj.transform.SetParent(Parent.transform);
         spriteInfoList.Add(childObj);
+        childObj.IsDragging = true;
+        childObj.IsSingle = true;
     }
 
     // Clears all lists, resets bools, and destroys all sprites

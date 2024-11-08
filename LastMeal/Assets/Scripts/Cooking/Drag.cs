@@ -10,14 +10,27 @@ public class Drag : MonoBehaviour
     public Vector3 MousePos;
 
     [SerializeField]
-    bool IsDragging = false;
-    static bool IsSingle = false;
+    bool isDragging = false;
+    static bool isSingle = false;
 
     public delegate void DragEndDelegate(Drag draggableObject);
     public DragEndDelegate dragEndCallback;
 
     private Vector3 mouseDragStartPosition;
     private Vector3 spriteDragStartPosition;
+
+    public bool IsDragging
+    {
+        get { return isDragging; }
+        set { isDragging = value; }
+    }
+
+    public bool IsSingle
+    {
+        get { return isSingle; }
+        set { isSingle = value; }
+    }
+
 
     private void Update()
     {
@@ -28,7 +41,7 @@ public class Drag : MonoBehaviour
        // If the mouse is hovering, you can drag
        if (Input.GetMouseButtonDown(0) && spriteInfo.IsColliding && !IsSingle)
        {
-           IsDragging = !IsDragging;
+           IsDragging = true;
            IsSingle = true;
        }
 
