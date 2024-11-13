@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SalScene.unity
     guid: 72338d3f21e601348bba31018c53b1c4
+  - enabled: 1
+    path: Assets/Scenes/DayOneCons.unity
+    guid: 873b424ca65759845b89280a1393e34f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 5db7212cfa7e6c34cb3cb6fff852994b, type: 2}
