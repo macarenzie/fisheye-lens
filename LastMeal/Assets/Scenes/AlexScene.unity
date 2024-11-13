@@ -2773,13 +2773,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteInfoList: []
-  IngrediantList:
-  - {fileID: 730081679822524621, guid: 00d3324689944e24e89d9ac40d7c4578, type: 3}
-  - {fileID: 236272918379846498, guid: 83ca1cfca18fefc4e86979199f6108c1, type: 3}
-  - {fileID: 2435229700410165836, guid: 94f493ccb322d0d44b444e3b1fde5268, type: 3}
-  - {fileID: 2096434672378634163, guid: 8525d67315d2c2642834c04880f1153c, type: 3}
-  - {fileID: 2096434672378634163, guid: 8525d67315d2c2642834c04880f1153c, type: 3}
-  - {fileID: 2096434672378634163, guid: 8525d67315d2c2642834c04880f1153c, type: 3}
+  buttonList:
+  - {fileID: 1774565983}
+  - {fileID: 212894006}
+  - {fileID: 689899346}
+  - {fileID: 1873193816}
+  - {fileID: 159877385}
+  - {fileID: 376462942}
+  - {fileID: 626708458}
+  - {fileID: 234947426}
+  - {fileID: 305746320}
+  - {fileID: 2067147786}
   manager: {fileID: 456577954}
   cooker: {fileID: 305746321}
   complete: {fileID: 2067147787}
