@@ -387,7 +387,7 @@ MonoBehaviour:
   counterPos: {x: 0, y: 0}
   swapDuration: 0.4
   orderCan: {fileID: 1769157646}
-  cookCan: {fileID: 0}
+  cookCan: {fileID: 1138912129}
   receiptCan: {fileID: 1350465918}
   timer: {fileID: 1020447772}
 --- !u!81 &22863248
