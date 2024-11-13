@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class IngrediantManager : MonoBehaviour
 {
     public List<Drag> spriteInfoList = new List<Drag>();
-    public List<Drag> IngrediantList = new List<Drag>();
+    public List<GameObject> buttonList = new List<GameObject>();
 
     public IngrediantManager manager;
     public Cook cooker;
@@ -60,22 +60,36 @@ public class IngrediantManager : MonoBehaviour
 
         // Loop through the list to check each sprite for collision
         // Set sprite isColliding to true when collision exists
-        foreach (Drag sprite in spriteInfoList)
-        {
-            // Iterate through the list checking for collisions
-            if (AABBCheck(sprite.spriteInfo, MousePos))
+        if (spriteInfoList.Count != 0)
+        { 
+            foreach (Drag sprite in spriteInfoList)
             {
-                // Collision and stop iterating
-                sprite.spriteInfo.isColliding = true;
+                // Iterate through the list checking for collisions
+                if (AABBCheck(sprite.spriteInfo, MousePos))
+                {
+                    // Collision and stop iterating
+                    sprite.spriteInfo.isColliding = true;
 
-                // Reset location        
-                break;
+                    // Reset location        
+                    break;
+                }
+                else
+                {
+                    // No collision
+                    sprite.spriteInfo.isColliding = false;
+                }
             }
-            else
+        }
+
+        if (spriteInfoList.Count != 0)
+        {
+            for (int i = 0; i < buttonList.Count; i++)
             {
-                // No collision
-                sprite.spriteInfo.isColliding = false;
-            }
+                for (int j = 0; j < spriteInfoList.Count; j++)
+                {
+                    Reset(buttonList[i], spriteInfoList[j]);
+                }
+            } 
         }
     }
 
@@ -98,22 +112,36 @@ public class IngrediantManager : MonoBehaviour
         return false;
     }
 
-    public bool AABBTransformCheck(Transform spriteA, SpriteInfo spriteB)
+    public bool AABBRectCheck(Vector2 spriteA, Drag spriteB)
     {
         // Do check
         // Uses a method found in sprite info to get bounds of sprites
 
-        if (spriteB.RectMax.x < spriteA.localPosition.x &&
-            spriteB.RectMax.x > spriteA.localPosition.x &&
-            spriteB.RectMax.y < spriteA.localPosition.y &&
-            spriteB.RectMax.y > spriteA.localPosition.y)
-        {
+        if (spriteA.x < spriteB.spriteInfo.RectMax.x &&
+            spriteA.x > spriteB.spriteInfo.RectMin.x &&
+            spriteA.y < spriteB.spriteInfo.RectMax.y &&
+            spriteA.y > spriteB.spriteInfo.RectMin.y)
+        {                             
             // collision
             return true;
         }
-
+        
         // No collision
         return false;
+    }
+
+    /// <summary>
+    /// Moves sprites off of spawn buttons to a set position
+    /// </summary>
+    /// <returns></returns>
+    public void Reset(GameObject buttonPos, Drag sprite)
+    {
+        if (AABBRectCheck(buttonPos.transform.position, sprite))
+        {
+            Debug.Log("AABB");
+            sprite.transform.position = new Vector3(buttonPos.transform.position.x,
+                buttonPos.transform.position.y - 1.0f, 0.0f);
+        }
     }
 }
 
