@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// State of the visible menus during the main game loop
@@ -25,17 +25,29 @@ public enum MenuNav
 /// Author(s): Andrew Jameison
 public class ButtonNavigation : MonoBehaviour
 {
-    private MenuNav menuNav = MenuNav.PlayGame;
+    public static MenuNav menuNav { get; private set; }
 
     [SerializeField] private Timer timer;
 
+    private void Start()
+    {
+        menuNav = MenuNav.PlayGame;
+    }
 
     // A key-press event for entering the game menus
     public void KeyPause(InputAction.CallbackContext value)
     {
-        if (value.performed && menuNav == MenuNav.PlayGame)
+        if (value.performed)
         {
-            OpenMenu(MenuNav.Settings);
+            if (menuNav == MenuNav.PlayGame)
+            {
+                OpenMenu(MenuNav.Settings);
+            }
+
+            else if (menuNav == MenuNav.Settings)
+            {
+                OpenMenu(MenuNav.PlayGame);
+            }
         }
     }
 
@@ -84,7 +96,7 @@ public class ButtonNavigation : MonoBehaviour
 
         if (!SceneNav.Instance.LoadNextScene())
         {
-            if (timer) { timer.ResetTimer(); }
+            //if (timer) { timer.ResetTimer(); }
 
             OpenMenu(MenuNav.Success);
         }
@@ -176,7 +188,21 @@ public class ButtonNavigation : MonoBehaviour
                 break;
 
             case MenuNav.Success:
-                ActivateMenu(true, transform.GetChild(1), "Success");
+                if (ActivateMenu(true, transform.GetChild(1), "Success"))
+                {
+                    // Really make sure the body is available to change the text 
+                    if (transform.GetChild(1).GetChild(4).name == "Body")
+                    {
+                        TMP_Text textBox = transform.GetChild(1).GetChild(4).GetComponent<TMP_Text>();
+
+                        textBox.text = SceneNav.Instance.FormatSuccessText();
+                    }
+
+                    else
+                    {
+                        Debug.Log("ButtonNavigation.cs : Could not find text body in Success.");
+                    }
+                }
                 break;
 
             case MenuNav.Failure:
@@ -199,16 +225,25 @@ public class ButtonNavigation : MonoBehaviour
         menuNav = value;
     }
 
-    private void ActivateMenu(bool activate, Transform child, string menuName)
+    /// <summary>
+    /// Confirms and activates the correct menu
+    /// </summary>
+    /// <param name="activate">Turning on OR off the menu</param>
+    /// <param name="child">The menu transform</param>
+    /// <param name="menuName">Menu name to be compared to</param>
+    /// <returns>Whether activation was successful</returns>
+    private bool ActivateMenu(bool activate, Transform child, string menuName)
     {
         if(child.gameObject != null && child.name == menuName) 
         {
             child.gameObject.SetActive(activate);
+            return true;
         }
 
         else
         {
-            Debug.Log("ButtonNavigation.cs : Could not find " + menuName + " menu in GameMenus heirarchy");
+            Debug.Log("ButtonNavigation.cs : Could not find " + menuName + " menu in GameMenus heirarchy.");
+            return false;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,7 @@ public class CameraMove : MonoBehaviour
     /// </summary>
     public void OrderComplete()
     {
+        //SceneNav.Instance.SaveData(1, timer.timeRemaining);
         timer.ResetTimer();
 
         isAtCounter = true;
@@ -58,29 +60,23 @@ public class CameraMove : MonoBehaviour
     /// <param name="input"></param>
     public void SwapView(InputAction.CallbackContext input)
     {
-        if (input.performed) {
+        if (input.performed && timer.inPlay && ButtonNavigation.menuNav == MenuNav.PlayGame) {
             Debug.Log(receiptAppeared);
             if (co != null) { StopCoroutine(co); }
 
             if (isAtCounter) {
                 co = LerpValue(transform.position, kitchenPos);
                 cookCan.enabled = true;
-                //orderCan.enabled = false;
-                //receiptCan.enabled = false;
-
-                //timer.ShowTimer(true);
             }
 
             else {
                 co = LerpValue(transform.position, counterPos);
-                //cookCan.enabled = false;
+
                 orderCan.enabled = true;
                 if (receiptAppeared)
                 {
                     receiptCan.enabled = true;
                 }
-
-                //timer.ShowTimer(false);
             }
 
             StartCoroutine(co);

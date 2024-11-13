@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,9 +22,12 @@ public class SceneNav : MonoBehaviour
     /// </summary>
     /// 
     /// TODO: Save data between scenes
-    private struct Day 
+    private struct Day
     {
         public string sceneName;
+        public float timeSpent;
+        public int ordersComplete;
+
         // bool isCompleted - Player has completed this day should have perm data
         // bool isCurrent - what the current working day is, no permenant data on this one
         // How many orders completed
@@ -34,9 +38,9 @@ public class SceneNav : MonoBehaviour
     // TODO: List of all the scenes in the game 
     private Day[] _days =
     {
-        new() { sceneName = "Navigation"},
-        new() { sceneName = "Main"},
-        new() { sceneName = "SalScene"}
+        new() { sceneName = "Navigation" },
+        new() { sceneName = "Main" },
+        new() { sceneName = "SalScene" }
     };
 
 
@@ -93,8 +97,10 @@ public class SceneNav : MonoBehaviour
     public void RestartDay()
     {
         // Restart the current day, erase any temporary data accumulated this round
-
         SceneManager.LoadScene(_days[dayIndex].sceneName);
+
+        _days[dayIndex].timeSpent = 0.0f;
+        _days[dayIndex].ordersComplete = 0;
     }
 
     /// <summary>
@@ -109,5 +115,40 @@ public class SceneNav : MonoBehaviour
         dayIndex = _dayIndex;
 
         SceneManager.LoadScene(_days[_dayIndex].sceneName);
+    }
+
+    /// <summary>
+    /// Formats a string to be displayed at the end of the day
+    /// </summary>
+    /// <returns></returns>
+    public string FormatSuccessText()
+    {
+        string formatted;
+
+        int mealsServed = 0;
+        float timeSpent = 0.0f;
+
+        foreach(Day day in _days)
+        {
+            mealsServed += day.ordersComplete;
+            timeSpent += day.timeSpent;
+        }
+
+        formatted = "Day: 1\n" +
+                    "Meals Served: " + mealsServed + "\n" +
+                    "Time Spent: " + MathF.Round(timeSpent, 2, MidpointRounding.AwayFromZero);
+
+        return formatted;
+    }
+
+    /// <summary>
+    /// Called when an order is complete to update this day's save data
+    /// </summary>
+    /// <param name="ordersComplete"></param>
+    /// <param name="timeSpent"></param>
+    public void SaveData(int ordersComplete, float timeSpent)
+    {
+        _days[dayIndex].timeSpent = timeSpent;
+        _days[dayIndex].ordersComplete = ordersComplete;
     }
 }

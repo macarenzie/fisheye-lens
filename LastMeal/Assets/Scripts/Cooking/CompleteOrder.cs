@@ -28,7 +28,7 @@ public class CompleteOrder : MonoBehaviour
     {
         CrossCheck();
 
-        if (IngrediantsCompleting.Count == 1 && validCookedMeal && timer.InPlay)
+        if (IngrediantsCompleting.Count == 1 && validCookedMeal && timer.inPlay)
         {
             cameraMove.OrderComplete();
             orderComplete = true;

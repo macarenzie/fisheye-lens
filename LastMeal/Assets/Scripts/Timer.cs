@@ -19,15 +19,13 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject menus;
     [SerializeField] protected float initialTime;
 
-    private float timeRemaining;
+    public float timeRemaining { get; private set; }
     protected bool timerIsRunning;
 
     /// <summary>
     /// Whether an order is currently being worked on
     /// </summary>
-    private bool inPlay = false; 
-
-    public bool InPlay { get { return inPlay; } }
+    public bool inPlay { get; private set; }
 
     [Header("Lerp Movement")]
     [SerializeField] private AnimationCurve lerpCurve;
@@ -47,6 +45,7 @@ public class Timer : MonoBehaviour
         inView = transform.localPosition;
         inView.y += yShift;
 
+        inPlay = false;
         timerIsRunning = false;
         timeRemaining = initialTime;
 
@@ -99,6 +98,8 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void ResetTimer()
     {
+        SceneNav.Instance.SaveData(1, initialTime - timeRemaining);
+
         timeRemaining = initialTime;
 
         ConvertTimeValue(timeRemaining);
@@ -157,13 +158,16 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void CompleteDay()
     {
-        ResetTimer();
+        //ResetTimer();
 
+        //if ( !SceneNav.Instance.LoadNextScene(1, timeRemaining) )
+        //{
+        //    menus.GetComponent<ButtonNavigation>().OpenSuccess();
+        //}
 
-        if ( !SceneNav.Instance.LoadNextScene() )
-        {
-            menus.GetComponent<ButtonNavigation>().OpenSuccess();
-        }
+        // Inefficent: a method that just calls a method from another script? Bad
+
+        menus.GetComponent<ButtonNavigation>().PlayGame();
     }
 
     /// <summary>
