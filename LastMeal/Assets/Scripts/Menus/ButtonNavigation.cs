@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -121,6 +122,14 @@ public class ButtonNavigation : MonoBehaviour
     }
 
     /// <summary>
+    /// Moves the player to the consequences scene
+    /// </summary>
+    public void ToConsequences()
+    {
+        SceneNav.Instance.LoadConsequences();
+    }
+
+    /// <summary>
     /// Button Event. Exits the application
     /// </summary>
     public void QuitGame()
@@ -149,6 +158,7 @@ public class ButtonNavigation : MonoBehaviour
         {
             case MenuNav.PlayGame:
                 timer.PauseTimer();
+                gameObject.SetActive(true);
                 break;
 
             case MenuNav.Settings:
@@ -181,6 +191,7 @@ public class ButtonNavigation : MonoBehaviour
         {
             case MenuNav.PlayGame:
                 timer.PauseTimer();
+                gameObject.SetActive(false);
                 break;
 
             case MenuNav.Settings:
@@ -191,9 +202,9 @@ public class ButtonNavigation : MonoBehaviour
                 if (ActivateMenu(true, transform.GetChild(1), "Success"))
                 {
                     // Really make sure the body is available to change the text 
-                    if (transform.GetChild(1).GetChild(4).name == "Body")
+                    if (transform.GetChild(1).GetChild(1).name == "Body")
                     {
-                        TMP_Text textBox = transform.GetChild(1).GetChild(4).GetComponent<TMP_Text>();
+                        TMP_Text textBox = transform.GetChild(1).GetChild(1).GetComponent<TMP_Text>();
 
                         textBox.text = SceneNav.Instance.FormatSuccessText();
                     }

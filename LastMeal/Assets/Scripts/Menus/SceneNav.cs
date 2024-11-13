@@ -73,7 +73,7 @@ public class SceneNav : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Moves to the next day in the game's sequence
     /// </summary>
     /// <returns>False upon finding the last scene</returns>
     public bool LoadNextScene()
@@ -104,7 +104,7 @@ public class SceneNav : MonoBehaviour
     }
 
     /// <summary>
-    /// Called in mainMenu for the player to advance to a specific 
+    /// Called in mainMenu for the player to advance to a specific  scene
     /// </summary>
     /// <param name="_dayIndex"></param>
     public void LoadSelectedScene(int _dayIndex)
@@ -150,5 +150,17 @@ public class SceneNav : MonoBehaviour
     {
         _days[dayIndex].timeSpent = timeSpent;
         _days[dayIndex].ordersComplete = ordersComplete;
+    }
+
+    /// <summary>
+    /// Sends the player to the consequences screen
+    /// </summary>
+    public void LoadConsequences()
+    {
+        // TODO: Save long term data HERE, since this should feel like a checkpoint for the player
+
+        //_dayIndex = 0; // Might also reset the "cycle:
+
+        SceneManager.LoadScene("DayOneCons");
     }
 }
