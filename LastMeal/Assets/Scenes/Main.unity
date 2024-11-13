@@ -2368,10 +2368,10 @@ MonoBehaviour:
   IngrediantsCombining: []
   manager: {fileID: 1598617537}
   spawner: {fileID: 1133105887}
-  receipt: {fileID: 0}
+  receipt: {fileID: 2142189591}
   allSprites: {fileID: 457712357}
-  gimnyText: {fileID: 0}
-  textHolder: {fileID: 0}
+  gimnyText: {fileID: 1326898405}
+  textHolder: {fileID: 504671145}
   isBread: 0
   isLettuce: 0
   isTomato: 0
