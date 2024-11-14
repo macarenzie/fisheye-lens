@@ -123,7 +123,7 @@ public class Cook : MonoBehaviour
     }
     public void SpawnRecipeSprite()
     {
-        
+        //sandwichFinished plus contraband
         if (isSandwich && isContraband)
         {
             ConfirmIngredients();
@@ -137,6 +137,7 @@ public class Cook : MonoBehaviour
             textHolder.SetActive(true);
         }
 
+        //SaladFinish plus Contra
         else if ((isSalad || (isCheese | isEgg | isLettuce | isTomato | isBacon)) && isContraband) 
         {
             ConfirmIngredients();
@@ -149,7 +150,7 @@ public class Cook : MonoBehaviour
             contraTrigger = true;
             textHolder.SetActive(true);
         }
-        //Sandwich
+        //Just Sandwich
         else if (isBread & !isContraband & (isCheese | isEgg | isLettuce | isTomato | isBacon))
         {
             ConfirmIngredients();

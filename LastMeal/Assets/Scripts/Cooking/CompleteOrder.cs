@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CompleteOrder : MonoBehaviour
@@ -26,7 +27,7 @@ public class CompleteOrder : MonoBehaviour
 
     public void Finish()
     {
-        CrossCheck();
+        validCookedMeal = CrossCheck();
 
         if (IngrediantsCompleting.Count == 1 && validCookedMeal && timer.inPlay)
         {
@@ -39,7 +40,7 @@ public class CompleteOrder : MonoBehaviour
         Debug.Log("ValidCookedMeal = " + validCookedMeal);
 
     }
-    void CrossCheck()
+    bool CrossCheck()
     {
 
         foreach (string order in userOrder.userOrder)
@@ -77,8 +78,11 @@ public class CompleteOrder : MonoBehaviour
         //        validCookedMeal = false;
         //    }
         //}
+
+
         int userOrderCount = userOrder.userOrder.Count;
         validCookedMeal = true;
+        int userInputtedIngredientCount = cookScript.dictIngredientCooked.Count;
 
 
         // Check if all items in userOrder are cooked
@@ -92,9 +96,25 @@ public class CompleteOrder : MonoBehaviour
             }
         }
 
+        int ingredientCount = 0;
+        ///way more ingredients than whats ordered
+        foreach (var ingredient in cookScript.dictIngredientCooked)
+        {
+            if(ingredient.Value == true)
+            {
+                ingredientCount++;
+            }
+        }
+
+        if (ingredientCount != userOrderCount) 
+        { 
+            validCookedMeal = false; 
+        }
+
 
         Console.WriteLine(validCookedMeal);
         Debug.Log("Valid" + validCookedMeal);
+        return validCookedMeal;
     }
 
 
