@@ -232,7 +232,7 @@ public class Cook : MonoBehaviour
             }
             else
             {
-                gimnyText.SetText("Now THAT is a salad, you've got a gift kid! Listen, anyone messes with you and you tell me, okay? I'll see you around kid, let Gimny know I said \"Salutations\".\nThank you for playing!");
+                gimnyText.SetText("Now THAT is a salad, you've got a gift kid! Listen, anyone messes with you and you tell me, okay? I'll see you around kid, let Gimny know I said \"Salutations\".\n(YOU WIN||SEE CONSEQUENCES)");
             }
 
         }
@@ -244,7 +244,7 @@ public class Cook : MonoBehaviour
             }
             else
             {
-                gimnyText.SetText("You either can't catch hints, are stupid, or are really stupid. I got my eye on you Chef…\nThank you for playing!");
+                gimnyText.SetText("You either can't catch hints, are stupid, or are really stupid. I got my eye on you Chef…\n(YOU WIN||SEE CONSEQUENCES)");
             }
 
         }

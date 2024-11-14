@@ -34,12 +34,36 @@ public class SalChange : MonoBehaviour
     private TextAsset dialogue;
     StreamReader reader;
     private bool hasEnded = false;
+    private string[] dialogueWords;
+    private List<string> readWords = new List<string>();
+    private float counter;
+    private int wordRead = 0;
+    private string newText;
+    private bool textStart;
 
 
     /// <summary>
     /// Used when an order is begun, calls StartTimer
     /// </summary>
     [SerializeField] private Timer timer;
+
+    private void Update()
+    {
+        if (textStart && wordRead < dialogueWords.Length)
+        {
+            counter += Time.deltaTime;
+            if (counter >= 0.1)
+            {
+                readWords.Add(dialogueWords[wordRead]);
+                newText += readWords[wordRead] + " ";
+                wordRead++;
+                counter = 0;
+                gimnyText.SetText(newText);
+
+            }
+        }
+
+    }
 
 
     public void OnTextClick()
@@ -63,7 +87,20 @@ public class SalChange : MonoBehaviour
             }
             else
             {
-                gimnyText.SetText(reader.ReadLine());
+                if (readWords.Count > 0)
+                {
+                    readWords.Clear();
+                    wordRead = 0;
+                    newText = "";
+                }
+
+                if (checkedScreen.enabled == false)
+                {
+                    textStart = true;
+                    dialogueWords = reader.ReadLine().Split(' ');
+                }
+
+                //gimnyText.SetText(reader.ReadLine());
             }
         }
 
@@ -73,6 +110,7 @@ public class SalChange : MonoBehaviour
                 textHolder.SetActive(false);
                 normalScreen.enabled = false;
                 cardScreen.enabled = true;
+                textStart = false;
                 break;
             case 6:
                 checkedScreen.enabled = false;
@@ -92,11 +130,15 @@ public class SalChange : MonoBehaviour
 
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
-                if (reader.EndOfStream && hasEnded == false)
+                if (hasEnded == false)
                 {
-                    hasEnded = true;
-                    reader.Close();
+                    if (reader.EndOfStream)
+                    {
+                        hasEnded = true;
+                        reader.Close();
+                    }
                 }
+                
                 break;
 
         }
@@ -108,7 +150,7 @@ public class SalChange : MonoBehaviour
         {
             if (decisionButton.name == "RefuseButton")
             {
-                gimnyText.SetText("You have got to be kidding me Chef!\nYou dare spit in the face\nof Salvatore Fini?!\nI'll see you dead…\nThank you for playing, you failed!");
+                gimnyText.SetText("You have got to be kidding me Chef!\nYou dare spit in the face\nof Salvatore Fini?!\nI'll see you dead…");
                 failScreen.SetActive(true);
                 normalScreen.enabled = true;
                 cardScreen.enabled = false;
@@ -116,6 +158,7 @@ public class SalChange : MonoBehaviour
             }
             else if (decisionButton.name == "ApproveButton")
             {
+                wordRead = 0;
                 gimnyText.SetText("Thanks for doing your job properly. Now if you'd be so kind, I would like to have a salad. Oh and throw in extra utensils, if you catch my drift…");
                 cardScreen.enabled = false;
                 checkedScreen.enabled = true;

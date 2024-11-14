@@ -32,12 +32,34 @@ public class TextChange : MonoBehaviour
     private TextAsset dialogue;
     StreamReader reader;
     private bool hasEnded = false;
+    private string[] dialogueWords;
+    private List<string> readWords = new List<string>();
+    private float counter;
+    private int wordRead = 0;
+    private string newText;
+    private bool textStart;
 
 
     /// <summary>
     /// Used when an order is begun, calls StartTimer
     /// </summary>
     [SerializeField] private Timer timer;
+
+    private void Update()
+    {
+        if (textStart && wordRead < dialogueWords.Length)
+        {
+            counter += Time.deltaTime;
+            if (counter >= 0.1)
+            {
+                readWords.Add(dialogueWords[wordRead]);
+                newText += readWords[wordRead] + " ";
+                wordRead++;
+                counter = 0;
+                gimnyText.SetText(newText);
+            }
+        }
+    }
 
     public void OnTextClick()
     {
@@ -59,7 +81,19 @@ public class TextChange : MonoBehaviour
             }
             else
             {
-                gimnyText.SetText(reader.ReadLine());
+                if (readWords.Count > 0)
+                {
+                    readWords.Clear();
+                    wordRead = 0;
+                    newText = "";
+                }
+
+                if (textStage != 4)
+                {
+                    dialogueWords = reader.ReadLine().Split(' ');
+                    textStart = true;
+                }
+                //gimnyText.SetText(reader.ReadLine());
             }
         }
         
@@ -69,12 +103,15 @@ public class TextChange : MonoBehaviour
                 textHolder.SetActive(false);
                 normalScreen.enabled = false;
                 cardScreen.enabled = true;
+                textStart = false;
                 break;
-            case 6:
+            case 5:
                 checkedScreen.enabled = false;
                 normalScreen.enabled = true;
+                
+                break;
+            case 9:
                 orderPaper.enabled = true;
-
                 timer.StartTimer();
                 break;
             case 10:
@@ -88,12 +125,15 @@ public class TextChange : MonoBehaviour
 
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
-                if (reader.EndOfStream && hasEnded == false)
+                if (hasEnded == false)
                 {
-                    hasEnded = true;
-                    reader.Close();
-                }   
-                
+                    if (reader.EndOfStream)
+                    {
+                        hasEnded = true;
+                        reader.Close();
+                    }
+                }
+
                 break;
 
         }
@@ -111,6 +151,7 @@ public class TextChange : MonoBehaviour
             else if (decisionButton.name == "ApproveButton")
             {
                 gimnyText.SetText("Thanks Chef! By the way, make sure to memorize the id number of the prisoner. \nIt could come in handy!");
+                wordRead = 0;
                 cardScreen.enabled = false;
                 checkedScreen.enabled = true;
                 textHolder.SetActive(true);
