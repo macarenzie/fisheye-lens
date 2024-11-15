@@ -1066,10 +1066,10 @@ MonoBehaviour:
   isTomato: 0
   isBacon: 0
   isEgg: 0
-  isCheese: 1
+  isCheese: 0
   isContraband: 0
   isSandwich: 0
-  isSalad: 1
+  isSalad: 0
   isSandwichContra: 0
   isSaladContra: 0
   isSal: 0
