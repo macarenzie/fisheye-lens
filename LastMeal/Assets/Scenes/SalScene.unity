@@ -843,7 +843,8 @@ MonoBehaviour:
   normalScreen: {fileID: 1276613881}
   cardScreen: {fileID: 16401570}
   checkedScreen: {fileID: 239572293}
-  failScreen: {fileID: 0}
+  gameMenus: {fileID: 884608348}
+  failScreen: {fileID: 1916087283}
   orderPaper: {fileID: 0}
   textHolder: {fileID: 1287173499}
   dialogue: {fileID: 4900000, guid: 77c0ae18a003f054eaff5991442458da, type: 3}
@@ -1072,7 +1073,8 @@ MonoBehaviour:
   isSalad: 0
   isSandwichContra: 0
   isSaladContra: 0
-  isSal: 0
+  isForce: 0
+  isSal: 1
 --- !u!114 &99132519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,6 +2612,7 @@ MonoBehaviour:
   normalScreen: {fileID: 1276613881}
   cardScreen: {fileID: 16401570}
   checkedScreen: {fileID: 239572293}
+  gameMenus: {fileID: 0}
   failScreen: {fileID: 0}
   orderPaper: {fileID: 1659739091}
   textHolder: {fileID: 1287173499}
@@ -6274,6 +6277,7 @@ MonoBehaviour:
   normalScreen: {fileID: 1276613881}
   cardScreen: {fileID: 16401570}
   checkedScreen: {fileID: 239572293}
+  gameMenus: {fileID: 0}
   failScreen: {fileID: 0}
   orderPaper: {fileID: 0}
   textHolder: {fileID: 1287173499}
@@ -6360,6 +6364,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8421433993636255452, guid: c8d2a5a2d3d36ff43a35d5d06cad726d, type: 3}
   m_PrefabInstance: {fileID: 1913448003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1916087283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8641301650749487882, guid: 7338865dafc820f40848214d05e70cd3, type: 3}
+  m_PrefabInstance: {fileID: 5473088891257484819}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1926285294
 GameObject:

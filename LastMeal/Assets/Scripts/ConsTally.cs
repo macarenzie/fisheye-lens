@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsTally : MonoBehaviour
+public static class ConsTally
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static int prisonApprove = 10;
+    public static bool customConOne = false;
+    public static int guardApprove = 10;
+    public static bool customConTwo = false;
+    public static bool customTwoFail = false;
 }

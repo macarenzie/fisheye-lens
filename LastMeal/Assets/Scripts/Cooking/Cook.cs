@@ -192,7 +192,8 @@ public class Cook : MonoBehaviour
             manager.AddSprite(RecipeList[0], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));
-            contraTrigger = true;
+            normalTrigger = true;
+            contraTrigger = false;
             textHolder.SetActive(true);
         }
 
@@ -207,6 +208,7 @@ public class Cook : MonoBehaviour
             manager.AddSprite(RecipeList[1], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));
+            normalTrigger = false;
             contraTrigger = true;
             textHolder.SetActive(true);
         }
@@ -237,7 +239,8 @@ public class Cook : MonoBehaviour
             manager.AddSprite(RecipeList[3], new Vector3(spawner.transform.position.x,
                 spawner.transform.position.y,
                 -1));
-            normalTrigger = true;
+            normalTrigger = false;
+            contraTrigger = true;
             textHolder.SetActive(true);
         }
 
@@ -260,11 +263,18 @@ public class Cook : MonoBehaviour
             if (isSal == false)
             {
                 gimnyText.SetText("Thanks Chef, you're a lifesaver! Your good pal Gimny will put in a good word with the other inmates. You're gonna have a great time here man, I just know it!\n(YOU WIN||NEXT CUSTOMER)");
+                ConsTally.customConOne = true;
+                ConsTally.prisonApprove += 2;
+                ConsTally.guardApprove -= 1;
             }
             else
             {
                 gimnyText.SetText("Now THAT is a salad, you've got a gift kid! Listen, anyone messes with you and you tell me, okay? I'll see you around kid, let Gimny know I said \"Salutations\".\n(YOU WIN||SEE CONSEQUENCES)");
+                ConsTally.customConTwo = true;
+                ConsTally.prisonApprove += 4;
+                ConsTally.guardApprove -= 3;
             }
+            contraTrigger = false;
 
         }
         else if (normalTrigger)
@@ -272,12 +282,18 @@ public class Cook : MonoBehaviour
             if (isSal == false)
             {
                 gimnyText.SetText("Thanks for the food Chef! Hopefully I'll be able to get that knife somewhere else. Have a good day man…\n(YOU WIN||NEXT CUSTOMER)");
+                ConsTally.customConOne = false;
+                ConsTally.prisonApprove -= 1;
+                ConsTally.guardApprove += 2;
             }
             else
             {
                 gimnyText.SetText("You either can't catch hints, are stupid, or are really stupid. I got my eye on you Chef…\n(YOU WIN||SEE CONSEQUENCES)");
+                ConsTally.customConTwo = false;
+                ConsTally.prisonApprove -= 3;
+                ConsTally.guardApprove += 4;
             }
-
+            normalTrigger = false;
         }
 
         // Iterate through all objects

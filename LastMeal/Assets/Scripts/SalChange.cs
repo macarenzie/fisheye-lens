@@ -25,6 +25,8 @@ public class SalChange : MonoBehaviour
     [SerializeField]
     private SpriteRenderer checkedScreen;
     [SerializeField]
+    private GameObject gameMenus;
+    [SerializeField]
     private GameObject failScreen;
     [SerializeField]
     private Canvas orderPaper;
@@ -151,6 +153,10 @@ public class SalChange : MonoBehaviour
             if (decisionButton.name == "RefuseButton")
             {
                 gimnyText.SetText("You have got to be kidding me Chef!\nYou dare spit in the face\nof Salvatore Fini?!\nI'll see you dead…");
+                ConsTally.customTwoFail = true;
+                ConsTally.prisonApprove -= 3;
+                ConsTally.guardApprove -= 1;
+                gameMenus.SetActive(true);
                 failScreen.SetActive(true);
                 normalScreen.enabled = true;
                 cardScreen.enabled = false;

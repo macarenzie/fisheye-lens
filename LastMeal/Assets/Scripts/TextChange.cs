@@ -125,6 +125,7 @@ public class TextChange : MonoBehaviour
 
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
+                textStart = false;
                 if (hasEnded == false)
                 {
                     if (reader.EndOfStream)

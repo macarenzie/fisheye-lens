@@ -119,6 +119,8 @@ public class ButtonNavigation : MonoBehaviour
         // TODO: Eventually replace with SceneNav _days enum instead of 0
 
         SceneNav.Instance.LoadSelectedScene(0);
+        ConsTally.prisonApprove = 10;
+        ConsTally.guardApprove = 10;
     }
 
     /// <summary>
