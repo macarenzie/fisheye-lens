@@ -1,4 +1,3 @@
 Sandwich:Cheese,Bacon,Tomato,Lettuce,Egg
 Salad:Cheese,Tomato,Lettuce,Egg
-Fruit Salad:Apple,Pineapple,Watermelon,Strawberry,Blueberry,Honeydew
 
