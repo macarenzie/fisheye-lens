@@ -106,11 +106,14 @@ public class CompleteOrder : MonoBehaviour
             }
         }
 
-        if (ingredientCount != userOrderCount) 
+
+        if (ingredientCount != userOrderCount ) 
         { 
-            validCookedMeal = false; 
+            validCookedMeal = false;
+            Debug.Log(ingredientCount);
         }
 
+        Debug.Log(ingredientCount);
 
         Console.WriteLine(validCookedMeal);
         Debug.Log("Valid" + validCookedMeal);

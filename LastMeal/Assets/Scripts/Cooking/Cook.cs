@@ -37,6 +37,8 @@ public class Cook : MonoBehaviour
     public bool isSandwichContra = false;
     public bool isSaladContra = false;
 
+    public bool isForce = false;
+
     //This bool determines (for now) if you are in the Sal or Gimny scene
     [SerializeField]
     bool isSal = false;
@@ -93,6 +95,11 @@ public class Cook : MonoBehaviour
         set { isSaladContra = value; }
     }
 
+    public bool IsForce
+    {
+        get { return isForce; }
+    }
+
     // Spawns food depending on the items that are
     // Currently works off a boolean system
     // Might cause problems if recipes have repeat ingrediants or overlapping recipes
@@ -101,7 +108,7 @@ public class Cook : MonoBehaviour
     // This could be a componding problem
     public void ConfirmIngredients()
     {
-        if (!isSalad && !isSandwich)
+        if (!isContraband && IngrediantsCombining.Count > 2)
         {
             dictIngredientCooked.Clear();
             dictIngredientCooked.Add("Bread", this.isBread);
@@ -122,6 +129,28 @@ public class Cook : MonoBehaviour
             dictIngredientCooked.Add("Bacon", this.isBacon);
             Debug.Log("Bacon Added:" + this.isBacon);
         }
+        else if (IngrediantsCombining.Count > 2)
+        {
+            dictIngredientCooked.Clear();
+            dictIngredientCooked.Add("Bread", this.isBread);
+            Debug.Log("Bread Added:" + this.isBread);
+
+            dictIngredientCooked.Add("Tomato", this.isTomato);
+            Debug.Log("Tomato Added:" + this.isTomato);
+
+            dictIngredientCooked.Add("Egg", this.isEgg);
+            Debug.Log("Egg Added:" + this.isEgg);
+
+            dictIngredientCooked.Add("Cheese", this.isCheese);
+            Debug.Log("Cheese Added:" + this.isCheese);
+
+            dictIngredientCooked.Add("Lettuce", this.isLettuce);
+            Debug.Log("Lettuce Added:" + this.isLettuce);
+
+            dictIngredientCooked.Add("Bacon", this.isBacon);
+            Debug.Log("Bacon Added:" + this.isBacon);
+        }
+
     }
     public void SpawnRecipeSprite()
     {
