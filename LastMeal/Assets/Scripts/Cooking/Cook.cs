@@ -101,25 +101,27 @@ public class Cook : MonoBehaviour
     // This could be a componding problem
     public void ConfirmIngredients()
     {
-        dictIngredientCooked.Clear();
-        dictIngredientCooked.Add("Bread", this.isBread);
-        Debug.Log("Bread Added:" + this.isBread);
+        if (!isSalad && !isSandwich)
+        {
+            dictIngredientCooked.Clear();
+            dictIngredientCooked.Add("Bread", this.isBread);
+            Debug.Log("Bread Added:" + this.isBread);
 
-        dictIngredientCooked.Add("Tomato", this.isTomato);
-        Debug.Log("Tomato Added:" + this.isTomato);
+            dictIngredientCooked.Add("Tomato", this.isTomato);
+            Debug.Log("Tomato Added:" + this.isTomato);
 
-        dictIngredientCooked.Add("Egg", this.isEgg);
-        Debug.Log("Egg Added:" + this.isEgg);
+            dictIngredientCooked.Add("Egg", this.isEgg);
+            Debug.Log("Egg Added:" + this.isEgg);
 
-        dictIngredientCooked.Add("Cheese", this.isCheese);
-        Debug.Log("Cheese Added:" + this.isCheese);
+            dictIngredientCooked.Add("Cheese", this.isCheese);
+            Debug.Log("Cheese Added:" + this.isCheese);
 
-        dictIngredientCooked.Add("Lettuce", this.isLettuce);
-        Debug.Log("Lettuce Added:" + this.isLettuce);
+            dictIngredientCooked.Add("Lettuce", this.isLettuce);
+            Debug.Log("Lettuce Added:" + this.isLettuce);
 
-        dictIngredientCooked.Add("Bacon", this.isBacon);
-        Debug.Log("Bacon Added:" + this.isBacon);
-
+            dictIngredientCooked.Add("Bacon", this.isBacon);
+            Debug.Log("Bacon Added:" + this.isBacon);
+        }
     }
     public void SpawnRecipeSprite()
     {
