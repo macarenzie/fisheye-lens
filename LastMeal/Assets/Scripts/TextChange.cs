@@ -50,7 +50,7 @@ public class TextChange : MonoBehaviour
         if (textStart && wordRead < dialogueWords.Length)
         {
             counter += Time.deltaTime;
-            if (counter >= 0.1)
+            if (counter >= 0.08)
             {
                 readWords.Add(dialogueWords[wordRead]);
                 newText += readWords[wordRead] + " ";
@@ -69,9 +69,9 @@ public class TextChange : MonoBehaviour
         }
         
         textStage++;    
-        if (textStage > 10)
+        if (textStage >= 11)
         {
-            textStage = 10;
+            textStage = 11;
         }
         else
         {
@@ -115,28 +115,26 @@ public class TextChange : MonoBehaviour
                 timer.StartTimer();
                 break;
             case 10:
-                
-                // TODO: Currently, the player can just spam through the dialogue and advance the day.
-                    // Should have some requirements to advance to next textStage
-                if (CompleteOrder.OrderComplete)
-                {
-                    timer.CompleteDay();
-                }
-
                 gimnyText.SetText("");
                 textHolder.SetActive(false);
                 textStart = false;
                 if (hasEnded == false)
                 {
-                    if (reader.EndOfStream)
-                    {
-                        hasEnded = true;
-                        reader.Close();
-                    }
+                    hasEnded = true;
+                    reader.Close();
                 }
 
                 break;
+            case 11:
 
+                // TODO: Currently, the player can just spam through the dialogue and advance the day.
+                // Should have some requirements to advance to next textStage
+                if (CompleteOrder.OrderComplete)
+                {
+                    timer.CompleteDay();
+                }
+
+                break;
         }
     }
 

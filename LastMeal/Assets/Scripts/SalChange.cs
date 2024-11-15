@@ -54,7 +54,7 @@ public class SalChange : MonoBehaviour
         if (textStart && wordRead < dialogueWords.Length)
         {
             counter += Time.deltaTime;
-            if (counter >= 0.1)
+            if (counter >= 0.08)
             {
                 readWords.Add(dialogueWords[wordRead]);
                 newText += readWords[wordRead] + " ";
