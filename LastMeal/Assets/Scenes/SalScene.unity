@@ -3654,9 +3654,9 @@ MonoBehaviour:
   manager: {fileID: 1418447575}
   deSpawner: {fileID: 1999253566}
   cookScript: {fileID: 99132518}
-  userOrder: {fileID: 0}
-  cameraMove: {fileID: 0}
-  timer: {fileID: 0}
+  userOrder: {fileID: 34454785}
+  cameraMove: {fileID: 45214505}
+  timer: {fileID: 1589654177}
   validCookedMeal: 0
 --- !u!114 &602266601
 MonoBehaviour:
