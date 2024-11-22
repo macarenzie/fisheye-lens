@@ -11,7 +11,6 @@ public class CompleteOrder : MonoBehaviour
     private static bool orderComplete = false;
     public static bool OrderComplete { get { return orderComplete; } }
 
-
     public List<Drag> IngrediantsCompleting = new List<Drag>();
     public IngrediantManager manager;
     public GameObject deSpawner;
@@ -21,7 +20,9 @@ public class CompleteOrder : MonoBehaviour
 
     [SerializeField] private CameraMove cameraMove;
     [SerializeField] private Timer timer;
-    
+    [SerializeField] Snap completeOrderSnapSpriteInfo;
+
+
     public bool validCookedMeal;
 
 
@@ -43,10 +44,10 @@ public class CompleteOrder : MonoBehaviour
     bool CrossCheck()
     {
 
-        foreach (string order in userOrder.userOrder)
-        {
-            Debug.Log("UserOrder" + order);
-        }
+        //foreach (string order in userOrder.userOrder)
+        //{
+        //    Debug.Log("UserOrder" + order);
+        //} //test 
 
 
         //int userOrderCount = userOrder.userOrder.Count;
@@ -110,13 +111,13 @@ public class CompleteOrder : MonoBehaviour
         if (ingredientCount != userOrderCount ) 
         { 
             validCookedMeal = false;
-            Debug.Log(ingredientCount);
+            //Debug.Log(ingredientCount);
         }
 
-        Debug.Log(ingredientCount);
+        //Debug.Log(ingredientCount);
 
-        Console.WriteLine(validCookedMeal);
-        Debug.Log("Valid" + validCookedMeal);
+        //Console.WriteLine(validCookedMeal);
+        //Debug.Log("Valid" + validCookedMeal);
         return validCookedMeal;
     }
 
@@ -161,6 +162,11 @@ public class CompleteOrder : MonoBehaviour
                 break;
             }
 
+        }
+        if (completeOrderSnapSpriteInfo.completeOrderDrag != null && completeOrderSnapSpriteInfo.completeOrderDrag.spriteInfo.IsSnapping)
+        {
+            Debug.Log("Complete Order Running");
+            Finish();
         }
     }
 }

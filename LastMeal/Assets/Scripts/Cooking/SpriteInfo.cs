@@ -13,7 +13,7 @@ public class SpriteInfo : MonoBehaviour
     public bool isColliding = false;
     public bool isCombining = false;
     public bool isCompleting = false;
-    bool isSnapping = false;
+    public bool isSnapping = false;
 
     // Methods for all states
     public bool IsColliding

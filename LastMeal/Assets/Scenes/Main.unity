@@ -4898,6 +4898,7 @@ MonoBehaviour:
   ingrediantManager: {fileID: 1598617537}
   snapRange: 40
   closestDistance: 0
+  completeOrderDrag: {fileID: 0}
 --- !u!114 &1598617537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6461,6 +6462,7 @@ MonoBehaviour:
   userOrder: {fileID: 2142189591}
   cameraMove: {fileID: 22863247}
   timer: {fileID: 1020447772}
+  completeOrderSnapSpriteInfo: {fileID: 1598617536}
   validCookedMeal: 0
 --- !u!114 &2092796926
 MonoBehaviour:
