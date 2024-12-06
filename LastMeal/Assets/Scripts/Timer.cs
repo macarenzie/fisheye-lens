@@ -147,7 +147,6 @@ public class Timer : MonoBehaviour
 
             transform.localPosition = Vector3.Lerp(start, end, t);
             timeElapsed += Time.deltaTime;
-            //transform.position = new Vector3(transform.position.x, transform.position.y, -10.0f);
 
             yield return null;
         }

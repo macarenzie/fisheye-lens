@@ -26,11 +26,14 @@ public enum MenuNav
 /// Author(s): Andrew Jameison
 public class ButtonNavigation : MonoBehaviour
 {
-    public static MenuNav menuNav { get; private set; }
+    /// <summary>
+    /// NOTE: previously set to a static variable to be referenced, unknown behavior would revert to PlayGame value.
+    /// </summary>
+    public MenuNav menuNav { get; private set; }
 
     [SerializeField] private Timer timer;
 
-    private void Start()
+    private void Awake()
     {
         menuNav = MenuNav.PlayGame;
     }
@@ -95,12 +98,7 @@ public class ButtonNavigation : MonoBehaviour
     {
         // TEMP: If this is the last scene, instead call success state
 
-        if (!SceneNav.Instance.LoadNextScene())
-        {
-            //if (timer) { timer.ResetTimer(); }
-
-            OpenMenu(MenuNav.Success);
-        }
+        SceneNav.Instance.LoadNextScene();
     }
 
     /// <summary>

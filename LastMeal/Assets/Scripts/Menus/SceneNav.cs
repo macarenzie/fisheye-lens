@@ -44,7 +44,7 @@ public class SceneNav : MonoBehaviour
     };
 
 
-    private void Awake()
+    public void Awake()
     {
         // Preserves the Scene Navigation object and player data, never more than one
         if (_instance != null && _instance != this)
@@ -76,7 +76,7 @@ public class SceneNav : MonoBehaviour
     /// Moves to the next day in the game's sequence
     /// </summary>
     /// <returns>False upon finding the last scene</returns>
-    public bool LoadNextScene()
+    public void LoadNextScene()
     {
         // TODO: adds any new data to long term memory
 
@@ -84,11 +84,12 @@ public class SceneNav : MonoBehaviour
         if (dayIndex + 1 < _days.Length)
         {
             SceneManager.LoadScene(_days[++dayIndex].sceneName);
-            return true;
         }
-
-        // If last day, pull up winstate instead
-        return false;
+        else
+        {
+            // If last day, pull up winstate instead
+            SceneManager.LoadScene("DayOneCons");
+        }
     }
 
     /// <summary>

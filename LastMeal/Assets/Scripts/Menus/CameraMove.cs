@@ -32,6 +32,7 @@ public class CameraMove : MonoBehaviour
 
     // timer stuff, adjust later
     [SerializeField] private Timer timer;
+    [SerializeField] private ButtonNavigation buttons;
 
     private void Update()
     {
@@ -60,7 +61,7 @@ public class CameraMove : MonoBehaviour
     /// <param name="input"></param>
     public void SwapView(InputAction.CallbackContext input)
     {
-        if (input.performed && timer.inPlay && ButtonNavigation.menuNav == MenuNav.PlayGame) {
+        if (input.performed && timer.inPlay && buttons.menuNav == MenuNav.PlayGame) {
             Debug.Log(receiptAppeared);
             if (co != null) { StopCoroutine(co); }
 
