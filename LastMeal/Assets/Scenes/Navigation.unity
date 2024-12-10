@@ -3566,7 +3566,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 337231236}
         m_TargetAssemblyTypeName: ButtonNavigation, Assembly-CSharp
-        m_MethodName: quit_game
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
